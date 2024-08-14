@@ -1,0 +1,72 @@
+@import '../../../../../scss/var';
+.card-container {
+  height: 100vh;
+  display: flex;
+  margin: auto;
+  align-items: center;
+  justify-content: center;
+  background-size: cover;
+  background-position: center;
+
+  .authenticator-card {
+    width: 600px;
+
+    mat-card-content {
+      padding: 2rem;
+      align-items: center;
+      text-align: center;
+      gap: 1rem;
+      color: #222222;
+      .auth-lock-icon {
+        width: 200px;
+      }
+      .auth-heading {
+        font-size: 2.2rem;
+      }
+      .auth-logo {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 2rem;
+        // background-color: $primary-light;
+        padding: 2rem;
+        border-radius: 12px;
+        margin-bottom: 2rem;
+        img {
+          width: 100px;
+        }
+      }
+      .auth-actions {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+      }
+    }
+    .auth-image-logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-bottom: 2rem;
+      img {
+        width: 25px;
+      }
+    }
+
+    .qr-code-container {
+      margin: auto;
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+      text-align: center;
+      padding: 2rem;
+      border-radius: 12px;
+      // background: $primary-light;
+      margin-bottom: 2rem;
+      img {
+        width: 150px;
+      }
+    }
+  }
+}

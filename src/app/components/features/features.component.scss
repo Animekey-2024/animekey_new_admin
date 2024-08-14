@@ -1,0 +1,63 @@
+@import '../../.././scss/var';
+
+.drawer-container {
+  height: calc(100vh - 65px);
+  // background: linear-gradient(to bottom, rgba(25, 67, 0, 1), rgba(0, 0, 0, 1));
+
+  .drawer {
+    // background-color: rgb(30 33 40);
+    width: 259px;
+    // background: linear-gradient(to bottom, rgba(25, 67, 0, 1), rgba(0, 0, 0, 1));
+  }
+
+  .drawer-content {
+    padding: 1rem;
+    background-color: #f0f0f5;
+    margin-left: 260px !important;
+  }
+}
+
+.sidenav-container {
+  height: 100%;
+}
+
+.sidenav .mat-toolbar {
+  background: inherit;
+}
+
+.mat-toolbar.mat-primary {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.sidenav {
+  width: 280px;
+  padding: 1rem;
+  border-radius: 0;
+  background: linear-gradient(to bottom, rgba(25, 67, 0, 1), rgba(0, 0, 0, 1));
+  mat-list-item {
+    &:focus {
+      background: none;
+
+      &:before {
+        background: none;
+      }
+    }
+
+    .list-item {
+      display: flex;
+      gap: 0.75rem;
+      cursor: pointer;
+      color: $text-color;
+      font-weight: 500;
+      align-items: center;
+
+      .menu-name {
+        display: block;
+        margin-bottom: 0.25rem;
+      }
+    }
+  }
+}
+

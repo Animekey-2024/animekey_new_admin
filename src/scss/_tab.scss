@@ -1,0 +1,74 @@
+@import './var';
+
+.content-management ::ng-deep {
+  // .heading {
+  //   color: $primary;
+  //   font-family: $font;
+  // }
+  // .mat-mdc-tab-body-content {
+  //   height: unset;
+  // }
+  .mat-mdc-tab-labels {
+    width: 20%;
+    grid-gap: 8%;
+  }
+
+  .mat-mdc-tab.mdc-tab {
+    // border: 1px solid $primary;
+    // border-radius: 10px;
+    min-width: 200px;
+    height: 60px;
+    // margin-left: 10px;
+  }
+
+  .mat-mdc-tab-header {
+    border-bottom: 1px solid #ddd;
+  }
+
+  // .mat-mdc-tab-body-content {
+  //   margin-top: 35px;
+  // }
+
+  // .mdc-tab-indicator--active .mdc-tab-indicator__content {
+  //   opacity: 0;
+  // }
+
+  .ql-snow.ql-toolbar button,
+  .ql-snow .ql-toolbar button {
+    height: 30px;
+    width: 40px;
+  }
+
+  .ql-snow .ql-color-picker,
+  .ql-snow .ql-icon-picker {
+    width: 33px;
+  }
+
+  .ql-snow .ql-picker {
+    height: 30px;
+  }
+
+  .mdc-tab--active {
+    // background: $primary;
+    .mdc-tab__text-label {
+      color: $black;
+      font-weight: 700;
+      font-family: $font;
+    }
+  }
+}
+// .content-management ::ng-deep .mat-mdc-tab-group {
+//   margin-top: 15px;
+// }
+.content-management
+  ::ng-deep
+  .mat-mdc-tab.mdc-tab--active:focus
+  .mdc-tab__text-label {
+  color: $black !important;
+  background: none;
+  font-family: $font;
+}
+.content-management ::ng-deep .mdc-tab__text-label {
+  color: $grey;
+  font-family: $font;
+}

@@ -1,0 +1,118 @@
+<!-- To upload images -->
+@if(!isZipcodeCSV && !isVideoUpload){
+<div
+  class="upload-img"
+  [class.round]="imageShape === 'circle'"
+  [class.disable-section]="disabled"
+>
+  <img [src]="image" class="img-section" (click)="openFileSelection()" />
+
+  <!-- @if(showRemoveImage){ -->
+  <mat-icon class="remove-file" *ngIf="showRemoveImage" (click)="removeSelectedFile()" title="Delete"
+    >delete_forever</mat-icon
+  >
+<!-- } -->
+  <input
+    type="file"
+    hidden
+    #file
+    (change)="handleFileChange($event)"
+    accept="image/*"
+  />
+</div>
+}
+<!-- To upload files -->
+@if(isZipcodeCSV){
+<div class="csv-image d-flex align-items-center pl-4 w-100">
+  <div class="d-flex w-100">
+    <div class="child w-50" [ngClass]="zipcodeCsvFileName ? 'border px-2' : ''">
+      @if(zipcodeCsvFileName){
+      <span>{{ zipcodeCsvFileName }}</span>
+      } @if(zipcodeCsvFileName){
+      <span>
+        <mat-icon
+          class="remove-csv-file mt-2"
+          (click)="removeSelectedFile()"
+          title="Delete"
+          >delete_forever</mat-icon
+        >
+      </span>
+      } @if(!zipcodeCsvFileName){
+      <img [src]="UPLOAD_CSV" class="img-section" />
+      }
+    </div>
+    @if(!zipcodeCsvFileName){
+    <div class="mt-2 w-50 mr-4 text-end mb-2">
+      <a
+        href="javascript:void(0)"
+        class="text-decoration"
+        (click)="openFileSelection()"
+        >Browse</a
+      >
+    </div>
+    }
+  </div>
+  <input
+    type="file"
+    hidden
+    #file
+    (change)="handleFileChange($event)"
+    [accept]="allowFileType"
+  />
+</div>
+} @if(isVideoUpload){
+<div class="pt-3">
+  @if(ratio){
+  <p class="media-info">
+    Aspect Ratio: <strong>{{ ratio }}</strong>
+  </p>
+  }
+  <p class="media-info">
+    Supported Files:
+    <strong>{{ allowedImageFormats }}</strong>
+  </p>
+
+  <div
+    [ngClass]="{
+      'add-media-container': !image,
+      'media-container': image
+    }"
+  >
+    <div class="image-container">
+      @if (loading) {
+      <div class="spinner-container">
+        <mat-spinner diameter="20"></mat-spinner>
+      </div>
+      } @else{ @if(image){
+      <img [src]="image" alt="Uploaded Image" class="image" />
+      <div class="image-actions">
+        <button mat-icon-button type="button" (click)="openFileSelection()">
+          <mat-icon>edit_circle</mat-icon>
+        </button>
+        <!-- <button mat-icon-button type="button" (click)="removeSelectedFile()">
+            <mat-icon class="remove-image" title="Delete">delete_forever</mat-icon>
+          </button> -->
+      </div>
+      } @else {
+      <button mat-icon-button type="button" (click)="openFileSelection()">
+        <mat-icon>add_circle</mat-icon>
+      </button>
+      <p>Add File</p>
+      } }
+
+      <input
+        #file
+        type="file"
+        hidden
+        [accept]="allowFileType"
+        (change)="handleFileChange($event)"
+      />
+    </div>
+  </div>
+</div>
+
+} @if(!isVideoUpload){
+<div class="image-text">
+  <ng-template *ngTemplateOutlet="imageTextTemplate"></ng-template>
+</div>
+}

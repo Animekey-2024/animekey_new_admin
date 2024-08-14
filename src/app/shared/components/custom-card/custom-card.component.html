@@ -1,0 +1,21 @@
+<div class="card-container mt-4 mb-4">
+  @for(data of cardData;track $index){
+  <mat-card
+    class="card"
+    [style.background-color]="cardColors.backgroundColor[$index]"
+  >
+    <mat-card-content>
+      <div class="d-flex justify-content-around w-100">
+        <div>
+          <img [src]="icons[$index].icon" class="profile-img" />
+        </div>
+        <div>
+          <mat-card-title>{{ data?.title }}</mat-card-title>
+          <mat-card-subtitle class="mt-2">{{ data?.count }}</mat-card-subtitle>
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-card-content class="card-content"> </mat-card-content>
+  </mat-card>
+  }
+</div>

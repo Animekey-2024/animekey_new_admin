@@ -1,0 +1,160 @@
+<div class="grid-container">
+  <div class="parent">
+    <div class="header align-items-center mb-3 d-flex justify-content-between">
+      <div>
+        <app-breadcrumb></app-breadcrumb>
+      </div>
+      @if(roleDetail && profileDetail?.role?._id != roleDetail._id){
+      <div class="d-flex gap-3">
+        <app-button [label]="
+          roleDetail.isActive ? btnSlugs['DEACTIVATE'] : btnSlugs['ACTIVATE']
+        " [class]="'btn-primary'" (click)="changeStatus(roleDetail)"
+          *showIf="features.ROLES; role: permissions.STATUS"></app-button>
+        <app-button [label]="btnSlugs['EDIT']" type="button" (click)="editRole()"
+          *showIf="features.ROLES; role: permissions.EDIT"></app-button>
+      </div>
+      }
+    </div>
+  </div>
+
+  <!-- Role Details -->
+  @if(roleDetail){
+  <mat-card class="mb-3">
+    <mat-card-content class="p-3">
+      <div class="body mb-3">
+        <div class="body-header mb-4">Basic Details</div>
+        <hr class="hr-light-grey" />
+        <div class="details-page-wrapper">
+          <div class="details-page-col">
+            <div class="details-page-heading">Role ID</div>
+            <p class="details-page-value">
+              {{ roleDetail.id }}
+            </p>
+          </div>
+          <div class="details-page-col">
+            <div class="details-page-heading">Role</div>
+            <p class="details-page-value">
+              {{ roleDetail.title }}
+            </p>
+          </div>
+          <div class="details-page-col">
+            <div class="details-page-heading">Status</div>
+            <div class="details-page-value">
+              <app-status [isBackground]="false" [statusClass]="roleDetail.isActive"
+                [status]="roleDetail.isActive"></app-status>
+            </div>
+          </div>
+          <div class="details-page-col">
+            <div class="details-page-heading">Created On</div>
+            <p class="details-page-value">
+              <app-date [date]="roleDetail.createdAt" [showTime]="true"></app-date>
+            </p>
+          </div>
+          <div class="details-page-col">
+            <p class="details-page-heading">Created By</p>
+            <p class="details-page-value">
+              {{ roleDetail.createdBy.name }} ({{ roleDetail.createdBy.id }})
+            </p>
+          </div>
+
+          <div class="details-page-col">
+            <p class="details-page-heading">Users</p>
+            <p class="details-page-value">
+              {{ roleDetail.userCount }}
+            </p>
+          </div>
+        </div>
+        <div class="details-page-col full-width pt-3">
+          <div class="details-page-heading">Description</div>
+          <p class="details-page-value" style="white-space: pre-wrap">
+            {{ roleDetail.description | optionalField }}
+          </p>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+  }
+
+  <!-- Permissions Details -->
+  <mat-card>
+    <mat-card-content class="p-3">
+      <div class="body role-permision">
+        <div class="body-header mb-4">Authorized Permissions</div>
+        <hr class="hr-light-grey" />
+        @for (group of roleDetail?.permissions; track group.permissions) {
+        <div class="sub-admin-head d-flex align-items-center role-head justify-content-between">
+          <div class="sub-detail wide-label">
+            <div class="role-main">
+              {{ group.title }}
+            </div>
+            <!-- <div class="view-role-tooltip" *ngIf="toolTip[group.slug]">
+            <div class="inner-cst-tooltip">
+              <mat-icon>info</mat-icon>
+              <div class="message">
+                <span *ngIf="group.permissions?.VIEW">
+                  {{ toolTip[group.slug].VIEW }}
+                </span>
+                <span *ngIf="group.permissions?.ADD">
+                  {{ toolTip[group.slug].ADD }}
+                </span>
+                <span *ngIf="group.permissions?.EDIT">
+                  {{ toolTip[group.slug].EDIT }}
+                </span>
+                <span *ngIf="group.permissions?.EMAIL_EDIT">
+                  {{ toolTip[group.slug].EDIT_EMAIL }}
+                </span>
+                <span *ngIf="group.permissions?.STATUS">
+                  {{ toolTip[group.slug].STATUS }}
+                </span>
+                <span *ngIf="group.permissions?.SHARE">
+                  {{ toolTip[group.slug].SHARE }}
+                </span>
+                <span *ngIf="group.permissions?.ASSIGN">
+                  {{ toolTip[group.slug].ASSIGN }}
+                </span>
+                <span *ngIf="group.permissions?.MANAGE">
+                  {{ toolTip[group.slug].MANAGE }}
+                </span>
+                <span *ngIf="group.permissions?.EDIT_CHILD">
+                  {{ toolTip[group.slug].EDIT_CHILD }}
+                </span>
+                <span *ngIf="group.permissions?.VIEW_CHILD">
+                  {{ toolTip[group.slug].VIEW_CHILD }}
+                </span>
+              </div>
+            </div>
+          </div> -->
+          </div>
+
+          <div class="sub-detail">
+            @if(group.permissions.VIEW){
+            <mat-checkbox class="checkbox-wrapper" [checked]="group.isView" disabled>View</mat-checkbox>
+            }
+          </div>
+          <div class="sub-detail">
+            @if(group.permissions?.ADD){
+            <mat-checkbox class="checkbox-wrapper" [checked]="group.isAdd" disabled>Add</mat-checkbox>
+            }
+          </div>
+          <div class="sub-detail">
+            @if(group.permissions?.EDIT){
+            <mat-checkbox class="checkbox-wrapper" [checked]="group.isEdit" disabled>Edit</mat-checkbox>
+            }
+          </div>
+          <div class="sub-detail">
+            @if(group.permissions?.DELETE){
+            <mat-checkbox class="checkbox-wrapper" [checked]="group.isDelete" disabled>Delete</mat-checkbox>
+            }
+          </div>
+          <div class="sub-detail">
+            @if(group.permissions?.STATUS){
+            <mat-checkbox class="checkbox-wrapper" [checked]="group.isStatus"
+              disabled>Activate/Deactivate</mat-checkbox>
+            }
+          </div>
+        </div>
+        }
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

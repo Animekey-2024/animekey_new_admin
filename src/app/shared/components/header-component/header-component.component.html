@@ -1,0 +1,13 @@
+<mat-card class="heading-panel" [ngClass]="!headerType ? 'mb-3' : ''">
+  <mat-card-content class="d-flex">
+    {{ title }}
+
+    @if(showBtn && !!headerType && headerType === 'cms'){
+    <app-button
+      (click)="edit()"
+      [label]="'Edit'"
+      [class]="'btn-flat'"
+    ></app-button>
+    }
+  </mat-card-content>
+</mat-card>

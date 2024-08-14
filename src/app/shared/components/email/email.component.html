@@ -1,0 +1,29 @@
+<form [formGroup]="form">
+  <div class="input-feild">
+    <app-label-text
+      [labelText]="label"
+      [disabled]="isDisabled"
+    ></app-label-text>
+    <mat-form-field appearance="outline" class="w-100 mouse-pointer">
+      @if(autofocus){
+      <input
+        matInput
+        [formControlName]="controlName"
+        [placeholder]="placeHolder"
+        bdAutoFocus
+        [attr.disabled]="isDisabled"
+      />
+      } @else{
+      <ng-template>
+        <input
+          matInput
+          [formControlName]="controlName"
+          [placeholder]="placeHolder"
+          [attr.disabled]="isDisabled"
+        />
+      </ng-template>
+      }
+      <mat-error>{{ form | inputError : 'email' : 'Email' }}</mat-error>
+    </mat-form-field>
+  </div>
+</form>

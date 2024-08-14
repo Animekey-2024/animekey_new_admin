@@ -1,0 +1,39 @@
+::ng-deep {
+  .global-menu-dropdown {
+    .mat-mdc-menu-content {
+      padding: 1rem;
+      display: flex;
+      gap: 2rem;
+    }
+
+    max-width: 1100px !important;
+    // min-width: 500px !important;
+
+    .selected-dates {
+      padding: 1rem 0;
+      span {
+        font-weight: 600;
+      }
+    }
+  }
+}
+.inline-calendar-card {
+  width: 350px;
+}
+
+.d-none {
+  display: none;
+}
+
+::ng-deep
+  .global-date-filter
+  .mat-mdc-form-field-has-icon-suffix
+  .mat-mdc-text-field-wrapper {
+  border-radius: 12px;
+  background: white;
+  width: 260px;
+}
+
+::ng-deep .global-date-filter .mat-mdc-form-field-subscript-wrapper {
+  display: none;
+}

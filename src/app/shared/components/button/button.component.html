@@ -1,0 +1,25 @@
+@if(!isStrokeBtn){
+<button
+  mat-flat-button
+  [type]="type"
+  [disabled]="disabled"
+  [color]="color"
+  [class]="class"
+  (click)="click()"
+>
+  @if(matIcon !== ''){
+  <span class="material-icons mr-2">{{ matIcon }}</span>
+  }
+  {{ label }}
+</button>
+} @if(isStrokeBtn){
+<button
+  mat-stroked-button
+  [type]="type"
+  [disabled]="disabled"
+  [class]="class"
+  (click)="cancel()"
+>
+  {{ label }}
+</button>
+}

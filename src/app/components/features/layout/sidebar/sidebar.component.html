@@ -1,0 +1,14 @@
+<mat-list class="mt-5" role="list">
+  @for (menu of menus; track $index) {
+  <ng-container>
+    @if(menu.isVisible){
+    <mat-list-item role="listitem" class="pl-0 pr-0" [routerLink]="menu.route" routerLinkActive="active-menu">
+      <div class="list-item">
+        <span class="menu-icon" [innerHTML]="menu.icon | safeContent : 'html'"></span>
+        <span class="menu-name">{{ menu.name }}</span>
+      </div>
+    </mat-list-item>
+    }
+  </ng-container>
+  }
+</mat-list>

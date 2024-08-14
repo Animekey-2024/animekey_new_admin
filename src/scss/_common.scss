@@ -1,0 +1,112 @@
+@import '../scss/var';
+
+@mixin details-page-col-style {
+  flex: 0 0 24%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.3rem;
+
+  @media (max-width: 1540px) {
+    flex: 0 0 32%;
+  }
+  @media (max-width: 1150px) {
+    flex: 0 0 48%;
+  }
+}
+
+@mixin details-page-value-style {
+  font-size: 18px;
+  line-height: 22px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #8a8a8a;
+  font-style: normal;
+}
+
+@mixin details-page-description-value-style {
+  font-size: 18px;
+  line-height: 22px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #8a8a8a;
+  font-style: normal;
+  padding-right: 10px;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+app-onboarding-layout {
+  flex: 0.75;
+  @media (max-width: 1024px) {
+    display: none;
+  }
+}
+
+.material-icons {
+  font-family: 'Material Icons' !important;
+}
+
+a {
+  color: $primary;
+}
+
+.onboarding-logo {
+  width: 350px;
+}
+
+.custom-id-column {
+  font-weight: bold;
+  color: $primary-light;
+  text-decoration: underline;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.details-page-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem 1rem;
+  margin-top: 20px;
+  align-items: center;
+}
+
+.details-page-heading {
+  font-family: $font;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: left;
+  color: $primary;
+  margin-bottom: 0;
+}
+
+.details-page-col {
+  @include details-page-col-style();
+  //for truncate
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.details-page-col-description {
+  white-space: normal !important;
+  @include details-page-col-style();
+}
+
+.details-page-value {
+  @include details-page-value-style();
+  //for truncate
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.details-page-value-description {
+  @include details-page-description-value-style();
+}
+
+.details-page-value-description:hover {
+  @include details-page-description-value-style();
+  white-space: normal;
+}

@@ -1,0 +1,158 @@
+@import '../../../../../scss/mix';
+@import '../../../../../scss/var';
+
+.main-header {
+  @include page-header;
+}
+
+.role-head {
+  @include flex(center, flex-start);
+  border-bottom: 1px solid #0000000f;
+  margin-bottom: 15px;
+  flex-wrap: wrap;
+  color: $primary;
+
+  &:last-child {
+    border-bottom: 1px solid transparent;
+  }
+
+  &:first-child {
+    border-bottom: 1px solid transparent;
+  }
+
+  .inner-role-head {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 20px;
+  }
+
+  .wide-label {
+    flex: 0 0 38% !important;
+    text-align: left !important;
+    @include flex(center, flex-start);
+
+    @media (max-width: 1024px) {
+      flex: 0 0 100% !important;
+    }
+
+    span {
+      font-size: 12px;
+      font-weight: normal;
+      // color: $secondary;
+      margin-left: 10px;
+    }
+  }
+
+  .inner-role-head {
+    flex: 1;
+    text-align: center;
+  }
+
+  .sub-detail {
+    flex: 1;
+    text-align: left;
+    font-size: 15px;
+    margin-bottom: 20px;
+    // color: $secondary;
+  }
+}
+
+.no-border {
+  border-bottom: 1px solid transparent !important;
+  margin-bottom: 0px;
+}
+
+.main-label {
+  font-size: 16px;
+  color: $primary;
+  font-weight: 600;
+  line-height: 25.78px;
+}
+
+.role-head {
+  position: relative;
+  color: $primary;
+
+  .role-tooltip {
+    position: absolute;
+    right: -30px;
+    top: -2px;
+
+    .inner-cst-tooltip {
+      position: relative;
+      display: inline-block;
+      transition: all 10s;
+
+      mat-icon {
+        color: black;
+        font-size: 20px;
+        cursor: pointer;
+      }
+
+      &:hover {
+        .message {
+          display: block;
+        }
+      }
+
+      .one-row {
+        top: -50px !important;
+      }
+
+      .manage {
+        top: -176px !important;
+      }
+
+      .message {
+        display: none;
+        left: -13px;
+        position: absolute;
+        top: -113px;
+        background-color: #7c7c7c;
+        padding: 10px;
+        box-sizing: border-box;
+        border-radius: 7px;
+        width: max-content;
+        z-index: 99;
+
+        @media (max-width: 768px) {
+          top: 34px !important;
+          left: -18px;
+          transform: translate(0%, 0px) !important;
+          width: 150px;
+        }
+
+        &::before {
+          content: '';
+          position: absolute;
+          width: 0;
+          height: 0;
+          border-left: 14px solid transparent;
+          border-right: 14px solid transparent;
+          border-top: 14px solid #7c7c7c;
+          left: 10px;
+          bottom: -9px;
+          z-index: 9;
+
+          @media (max-width: 768px) {
+            top: -10px;
+            transform: rotate(180deg) !important;
+            left: 15px;
+          }
+        }
+
+        span {
+          font-size: 10px;
+          color: white;
+          display: block;
+          line-height: 21px;
+        }
+      }
+    }
+  }
+}
+
+.disabled-row {
+  background: rgb(55 43 43 / 13%);
+  padding: 10px 5px 0 5px;
+}

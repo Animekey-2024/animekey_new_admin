@@ -1,0 +1,43 @@
+@import '../../../../../scss/var';
+
+.add-edit-sub-admin {
+  // common styles for all the component can be moved as global styles
+  .module-title {
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+  }
+
+  // component specific styles
+  .add-edit-sub-admin-form {
+    .top-section {
+      .image-section {
+        .profile-image-title {
+          font-size: 14px;
+          font-weight: 600;
+        }
+        .image-upload-warning {
+          color: $text-color;
+          font-size: 14px;
+        }
+        min-height: 185px;
+      }
+    }
+  }
+}
+
+.content-container {
+  padding: 36px;
+  border: 1px $light-grey solid;
+  border-radius: 0.9rem;
+  background-color: $white;
+}
+
+.page-title {
+  color: $black;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.image-upload-warning {
+  margin: 0;
+}

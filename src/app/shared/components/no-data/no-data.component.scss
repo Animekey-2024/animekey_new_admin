@@ -1,0 +1,27 @@
+.no_data_wapper {
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 20px;
+  img {
+    width: 200px;
+    height: 100%;
+  }
+  h3 {
+    font-size: 20px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+  p {
+    font-size: 14px;
+    font-style: normal;
+    line-height: 1.71;
+    color: #9e98aa;
+  }
+  a {
+    font-size: 14px;
+    margin: 10px 0;
+  }
+}

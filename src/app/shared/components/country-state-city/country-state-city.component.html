@@ -1,0 +1,62 @@
+<div
+  [formGroup]="form"
+  [ngClass]="!!isDisabledEntireField ? 'disabled-event' : ''"
+>
+  <div class="input-container gap-5" [ngClass]="isDisplayFlex ? 'd-flex' : ''">
+    <div class="d-flex flex-column {{ styleClass }}">
+      @if(countryData.length){
+      <app-common-select
+        [form]="form"
+        [controlName]="'country'"
+        [label]="'Country*'"
+        [errorText]="errorText.COUNTRY"
+        (valueChange)="getData($event, 'country')"
+        [dataList]="countryData"
+        [placeholderLabel]="'Country'"
+        [isSearchable]="true"
+        [isDisabled]="
+          data.country && data.country.isDisabled
+            ? data.country.isDisabled
+            : false
+        "
+      ></app-common-select>
+      }
+    </div>
+    <div class="d-flex flex-column {{ styleClass }}">
+      <app-common-select
+        [dataList]="stateData"
+        [label]="'State*'"
+        [form]="form"
+        [controlName]="'state'"
+        [errorText]="errorText.STATE"
+        (valueChange)="getData($event, 'state')"
+        [isSearchable]="true"
+        [placeholderLabel]="'State'"
+        [isDisabled]="
+          !stateData.length || (data.state && data.state.isDisabled)
+            ? true
+            : false
+        "
+      ></app-common-select>
+    </div>
+  </div>
+  <div class="input-container gap-5" [ngClass]="isDisplayFlex ? 'd-flex' : ''">
+    <app-common-select
+      [dataList]="cityData"
+      class="{{ styleClass }}"
+      [label]="'City*'"
+      [form]="form"
+      [controlName]="'city'"
+      [errorText]="errorText.CITY"
+      (valueChange)="getData($event, 'city')"
+      [isDisabled]="
+        !cityData.length || (data.city && data.city.isDisabled) ? true : false
+      "
+      [isSearchable]="true"
+      [placeholderLabel]="'City'"
+    ></app-common-select>
+    <div class="d-flex flex-column {{ styleClass }}">
+      <ng-content></ng-content>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,31 @@
+<div [formGroup]="form">
+  <app-label-text [labelText]="label" [disabled]="isDisabled"></app-label-text>
+  <mat-form-field class="w-100" appearance="outline">
+    <mat-chip-grid #chipGrid>
+      @for(value of form.get(controlName)?.value ; track $index){
+      <mat-chip-row
+        (removed)="remove(value)"
+        [editable]="true"
+        (edited)="edit(value, $event)"
+        [aria-description]="'press enter to edit ' + value"
+      >
+        {{ value }}
+        <button matChipRemove [attr.aria-label]="'remove ' + value">
+          <mat-icon>cancel</mat-icon>
+        </button>
+      </mat-chip-row>
+      }
+
+      <input
+        [placeholder]="!form.get(controlName)?.value ?  placeholderLabel : ''"
+        [matChipInputFor]="chipGrid"
+        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+        [matChipInputAddOnBlur]="addOnBlur"
+        (matChipInputTokenEnd)="add($event)"
+      />
+    </mat-chip-grid>
+    <mat-error>{{
+      form | inputError : controlName : errorText : false : 'enter'
+    }}</mat-error>
+  </mat-form-field>
+</div>

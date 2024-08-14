@@ -1,0 +1,70 @@
+<div class="modal-box">
+  @if(image){
+  <div class="moda-img">
+    <img [src]="image" />
+  </div>
+  }
+  <div class="modal-header pt-3">
+    <h2 mat-dialog-title>{{ title }}</h2>
+  </div>
+  <mat-dialog-content
+    [ngClass]="{ 'custom-mat-dialog-content': this.showTextBox }"
+  >
+    <div class="modal-content">
+      <p class="mini">{{ headerText }}</p>
+      <p class="message">{{ description }}</p>
+      @if(descriptionTemplate){
+      <ng-container>
+        <ng-template *ngTemplateOutlet="descriptionTemplate"></ng-template>
+      </ng-container>
+      }
+    </div>
+    @if(showTextBox){
+    <div class="modal_message pt-2">
+      <div mat-dialog-actions>
+        <form [formGroup]="deactivateForm" class="w-100">
+          <mat-form-field class="w-100" appearance="outline">
+            <textarea
+              cdkTextareaAutosize
+              cdkAutosizeMinRows="1"
+              cdkAutosizeMaxRows="10"
+              rows="6"
+              matInput
+              placeholder="Write your reason here..."
+              formControlName="reason"
+              appInputRef
+              [minLength]="validationCriteria.deactivateReasonMinLength"
+              [maxLength]="validationCriteria.deactivateReasonMaxLength"
+            ></textarea>
+            <mat-hint align="end"
+              >{{ deactivateForm.controls['reason'].value.length }}/{{
+                validationCriteria.deactivateReasonMaxLength
+              }}</mat-hint
+            >
+            <mat-error>{{
+              deactivateForm | inputError : 'reason' : 'Reason'
+            }}</mat-error>
+          </mat-form-field>
+        </form>
+      </div>
+    </div>
+    }
+  </mat-dialog-content>
+  <mat-dialog-actions class="modal-footer py-3 pb-4" align="center">
+    @if(!removeCancelBtn){
+    <button mat-stroked-button class="modal-btn" (click)="onCancel()">
+      {{ cancelButtonText }}
+    </button>
+    }
+    <button
+      mat-flat-button
+      color="primary"
+      class="butn butn__new modal-btn"
+      (click)="onSubmit()"
+      cdkFocusInitial
+      [disabled]="showTextBox ? deactivateForm.invalid && showTextBox : false"
+    >
+      {{ submitButtonText }}
+    </button>
+  </mat-dialog-actions>
+</div>

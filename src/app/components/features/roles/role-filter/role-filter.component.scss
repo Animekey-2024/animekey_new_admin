@@ -1,0 +1,47 @@
+@import './../../../../../scss/mix';
+@import './../../../../../scss/var';
+
+::ng-deep .filter-menu {
+  width: 600px !important;
+  max-width: 900px !important;
+}
+.filter {
+  margin-top: 15px;
+  padding: 16px;
+  background: $white;
+  border-radius: 1rem;
+  @include flex('', flex-end);
+  grid-gap: 10px;
+
+  .applied-filter-dot {
+    height: 16px;
+    width: 16px;
+    background-color: $primary;
+    border-radius: 50%;
+    position: absolute;
+    right: -7px;
+    top: -7px;
+  }
+}
+
+.filter-icon {
+  border: 1px solid #dddddd;
+  padding: 0.5rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  margin-bottom: 1.3rem;
+  img {
+    width: 30px;
+  }
+}
+
+.filter-model {
+  padding: 14px 24px;
+  .date-section {
+    .field {
+      flex: 1;
+    }
+  }
+}

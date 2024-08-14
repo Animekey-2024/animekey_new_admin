@@ -1,0 +1,94 @@
+<div class="global-date-filter d-flex gap-3">
+  <mat-form-field class="golbal-date-filter" appearance="outline">
+    <input type="text" matInput readonly [value]="selectedValue.displayDate" />
+    <button
+      type="button"
+      [matMenuTriggerFor]="globalDateFilter"
+      matSuffix
+      mat-icon-button
+      color="primary"
+    >
+      <mat-icon>date_range</mat-icon>
+    </button>
+  </mat-form-field>
+
+  <mat-menu
+    #globalDateFilter="matMenu"
+    class="global-menu-dropdown"
+    xPosition="before"
+  >
+    <div
+      class="d-flex gap-4 p-2 flex-wrap"
+      (click)="eventStopPropagation($event)"
+    >
+      <div>
+        @for(filter of dropDownValues;track filter.displayDate){
+        <button
+          mat-menu-item
+          (click)="setDate(filter, $event)"
+          menuClose="false"
+        >
+          {{ filter.displayDate }}
+        </button>
+        }
+      </div>
+      <div
+        [ngClass]="{ 'd-none': !showCalendar, 'd-flex': showCalendar }"
+        class="d-flex flex-column justify-content-between"
+      >
+        <p class="selected-dates">
+          Selected date: @if(fromDate){
+          <span>{{ fromDate | date : 'mediumDate' }}</span>
+          } @if(toDate){
+          <span> to {{ toDate | date : 'mediumDate' }}</span>
+          }
+        </p>
+        <div
+          class="gap-4"
+          [ngClass]="{ 'd-none': !showCalendar, 'd-flex': showCalendar }"
+        >
+          <div>
+            <mat-card class="inline-calendar-card">
+              <mat-calendar
+                #fromDateCalendar
+                [(selected)]="fromDate"
+                [minDate]="minDate"
+                [maxDate]="today"
+                (selectedChange)="onFromDateChange($event)"
+              ></mat-calendar>
+            </mat-card>
+          </div>
+          <div>
+            <mat-card class="inline-calendar-card">
+              <mat-calendar
+                #toDateCalendar
+                [(selected)]="toDate"
+                [maxDate]="today"
+                [minDate]="fromDate"
+              ></mat-calendar>
+            </mat-card>
+          </div>
+        </div>
+        <div class="date-filter-actions d-flex gap-3 pt-4 py-3">
+          <button
+            type="button"
+            type="button"
+            mat-flat-button
+            color="primary"
+            (click)="getDate('custom', '', true)"
+          >
+            Apply Filter
+          </button>
+          <button
+            type="button"
+            type="button"
+            mat-stroked-button
+            (click)="menuClose()"
+          >
+            Cancel
+          </button>
+        </div>
+      </div>
+    </div>
+  </mat-menu>
+</div>

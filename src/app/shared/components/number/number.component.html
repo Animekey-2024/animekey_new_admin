@@ -1,0 +1,19 @@
+<form [formGroup]="form">
+  <div class="input-feild">
+    <mat-form-field appearance="outline" class="w-100 mouse-pointer">
+      <mat-label>{{ label }}</mat-label>
+      @if(autofocus){
+      <input
+        matInput
+        [formControlName]="controlName"
+        bdAutoFocus
+        type="number"
+      />
+      } @else{
+      <ng-template>
+        <input matInput [formControlName]="controlName" />
+      </ng-template>
+      }
+    </mat-form-field>
+  </div>
+</form>

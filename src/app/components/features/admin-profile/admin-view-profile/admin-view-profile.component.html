@@ -1,0 +1,98 @@
+<div class="profile-container">
+  <div class="header mb-3">
+    <div class="header-title">
+      <h1 class="mb-0 ml-3">Admin Profile</h1>
+    </div>
+    <div class="btn">
+      <app-button (click)="onEdit()" [label]="btnSlugs['EDIT']"></app-button>
+    </div>
+  </div>
+
+  <mat-card>
+    <mat-card-content>
+      <div class="body">
+        <div class="body-header mb-4">Admin Details</div>
+        <hr class="hr-light-grey" />
+        <div class="details-page-wrapper w-100">
+          <div class="details-page-col">
+            @if(profileDetail?.avatar){
+            <app-image-preview
+              [image]="profileDetail.avatar"
+              [text]="profileDetail.name"
+              [styleClass]="'custom-height-width'"
+            ></app-image-preview>
+            } @if(!profileDetail?.avatar){
+            <div class="image-placeholder">
+              {{
+                profileDetail
+                  | imagePlaceholder
+                    : profileDetail.name.first + ' ' + profileDetail.name.last
+                  | async
+              }}
+            </div>
+            }
+          </div>
+          <div class="details-page-col">
+            <p class="details-page-heading">Admin ID</p>
+            <p class="details-page-value">{{ profileDetail.id }}</p>
+          </div>
+          <div class="details-page-col">
+            <p class="details-page-heading">Name</p>
+            <p
+              class="details-page-value text-captialize"
+              [attr.title]="
+                profileDetail.name.first + ' ' + profileDetail.name.last
+              "
+            >
+              {{ profileDetail.name.first + ' ' + profileDetail.name.last }}
+            </p>
+          </div>
+          <div class="details-page-col">
+            <p class="details-page-heading">Phone Number</p>
+            <p class="details-page-value">
+              {{
+                profileDetail.countryCode + ' ' + profileDetail.phoneNumber
+                  | optionalField
+              }}
+            </p>
+          </div>
+          <div class="details-page-col">
+            <p class="details-page-heading">Email ID</p>
+            <p class="details-page-value" [attr.title]="profileDetail.email">
+              {{ profileDetail.email }}
+            </p>
+          </div>
+          <div class="details-page-col">
+            <p class="details-page-heading">Authentication Status</p>
+            <p class="details-page-value">
+              {{ profileDetail.isMFASetup ? 'Configured' : 'Not Configured' }}
+              @if(profileDetail?.isMFASetup){
+              <span class="reset-auth ml-3">
+                <a
+                  class="details-page-value reset"
+                  (click)="onResetAuthenticator()"
+                  >Reset</a
+                >
+              </span>
+              }
+            </p>
+          </div>
+          <div class="details-page-col">
+            <p class="details-page-heading">Created On</p>
+            <p class="details-page-value">
+              {{ profileDetail.createdAt | date : 'mediumDate' }}
+            </p>
+          </div>
+          @if(profileDetail?.role){
+          <div class="details-page-col">
+            <p class="details-page-heading">Role & Permission</p>
+            <p class="details-page-value">
+              {{ profileDetail.role.title | optionalField }}
+            </p>
+          </div>
+          }
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

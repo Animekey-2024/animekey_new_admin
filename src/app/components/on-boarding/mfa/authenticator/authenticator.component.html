@@ -1,0 +1,79 @@
+<div class="card-container">
+  <!-- -----------ENABLE 2FA---------------- -->
+  @if(enableSetup2Factor){
+  <mat-card class="authenticator-card">
+    <mat-card-content>
+      <div class="auth-header mb-4">
+        <!-- <img [src]="lockIcon" class="auth-lock-icon mb-5" alt="" srcset="" /> -->
+        <p class="auth-heading mb-0">Google App Authentication</p>
+        <p class="auth-sub-heading mt-3">
+          Secure your account with TOTP two-factor authentication
+        </p>
+      </div>
+      <div class="auth-logo-icon-container">
+        <p class="mb-4">Continue with...</p>
+        <div class="auth-logo">
+          <img [src]="authenticatorLogo" alt="QR Code" />
+          <p>Google Authenticator</p>
+        </div>
+      </div>
+      <div class="auth-actions px-5 gap-3">
+        <button
+          mat-flat-button
+          color="primary"
+          type="submit"
+          (click)="setupAuthenticator()"
+        >
+          SETUP 2-FACTOR
+        </button>
+        <button mat-button (click)="backToLogin()">
+          <mat-icon>arrow_back</mat-icon>
+          <span>Back</span>
+        </button>
+      </div>
+    </mat-card-content>
+  </mat-card>
+  }
+
+  <!-- ---------------------------------------------- -->
+  @if(!enableSetup2Factor){
+  <mat-card class="authenticator-card">
+    <mat-card-content>
+      <div class="auth-header mb-4">
+        <!-- <img [src]="lockIcon" class="auth-lock-icon mb-5" alt="" srcset="" /> -->
+        <p class="auth-heading mb-0">Google App Authentication</p>
+        <p class="auth-sub-heading mt-3">
+          Secure your account with TOTP two-factor authentication
+        </p>
+      </div>
+      <div class="auth-image-logo">
+        <span>Setup</span>
+        <img [src]="authenticatorLogo" alt="QR Code" />
+        <span>Google Authenticator</span>
+      </div>
+      <div class="qr-code-container">
+        <p>
+          Launch Google Authenticator, tab on '+' icon then select "Scan
+          Barcode"
+        </p>
+        <img src="{{ qrCode }}" alt="QR Code" />
+      </div>
+
+      <div class="auth-actions px-5 gap-3">
+        <button
+          mat-flat-button
+          color="primary"
+          type="submit"
+          (click)="onSubmit()"
+        >
+          Next
+        </button>
+        <button mat-button (click)="backToSetupAuthenticator()">
+          <mat-icon>arrow_back</mat-icon>
+          <span>Back</span>
+        </button>
+      </div>
+    </mat-card-content>
+  </mat-card>
+  }
+</div>

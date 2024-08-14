@@ -1,0 +1,232 @@
+@import '../../../../scss/var';
+@import '../../../../scss/mix';
+
+table {
+  width: 100%;
+  .disabled-row {
+    background-color: #f5f5f9;
+    opacity: 0.6;
+    td {
+      cursor: default;
+    }
+  }
+  .pointer {
+    cursor: pointer;
+  }
+}
+::ng-deep {
+  .action-menu {
+    button {
+      text-align: center;
+    }
+    .mat-menu-item {
+      border: 1px solid transparent !important;
+    }
+  }
+  .table-dropdown {
+    box-shadow: 0 2px 8px 0 rgba(136, 136, 136, 0.25);
+    @media (min-width: 1590px) {
+      position: relative !important;
+      // right: 56px !important;
+    }
+    @media (max-width: 576px) {
+      margin-right: 0px !important;
+    }
+  }
+}
+.user-name {
+  display: flex;
+  align-items: center;
+  text-transform: capitalize;
+  .img {
+    width: 38px;
+    min-width: 38px;
+    height: 38px;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+  span {
+    margin-left: 10px;
+    font-size: 13px;
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    // width: 9rem;
+  }
+}
+::ng-deep .table-header-wrapper mat-form-field .mat-form-field-outline-start {
+  background-color: #eff0f6 !important;
+}
+
+::ng-deep .table-header-wrapper mat-form-field .mat-form-field-outline-gap {
+  background-color: #eff0f6 !important;
+}
+
+::ng-deep .table-header-wrapper mat-form-field .mat-form-field-outline-end {
+  background-color: #eff0f6 !important;
+}
+
+::ng-deep {
+  .filter-dropdown {
+    min-width: 265px;
+    max-width: 265px;
+    .date-section {
+      // width: 265px;
+      width: auto;
+    }
+    .mat-expansion-panel-header {
+      height: 50px;
+      padding: 0 20px;
+    }
+    .mat-expansion-panel-header-title {
+      color: rgba(0, 0, 0, 0.87);
+      font-size: 14px;
+      font-weight: 600;
+      // margin-bottom: -10px;
+      position: relative;
+      top: 3px;
+      mat-icon {
+        position: relative;
+        top: -4px;
+        margin-right: 8px;
+      }
+    }
+    .mat-expansion-panel {
+      box-shadow: none;
+    }
+    .mat-expansion-panel-spacing {
+      margin: 0px 0px -16px;
+    }
+  }
+  .desc-panel {
+    padding: 10px 14px;
+    background: #dadbe4;
+    margin: 0px -24px;
+    .mat-radio-button {
+      display: flex;
+      margin-bottom: 12px;
+      .mat-radio-label {
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: space-between;
+      }
+      .mat-radio-outer-circle {
+        background: white;
+        border-width: 1px;
+      }
+    }
+  }
+}
+
+.filter-head {
+  @include flex(center, space-between);
+  border-bottom: 1px solid #d6dbde;
+  padding: 15px 20px;
+  .right-filter {
+    font-size: 16px;
+    font-weight: 500;
+    color: black;
+  }
+  .left-filter {
+    .filter-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      &.sub {
+        color: $primary;
+      }
+      &.res {
+        color: $secondary;
+      }
+    }
+  }
+}
+
+.elipse-name {
+  max-width: 250px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  margin: auto;
+  padding: 5px 5px;
+  // width: 250px;
+}
+
+table td {
+  width: 55px;
+  overflow: hidden;
+  // max-width: 100px;
+  padding: 0 15px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  @media (max-width: 1024px) {
+    max-width: 160px !important;
+  }
+}
+table th {
+  width: 55px;
+  // max-width: 100px;
+  padding: 0 15px;
+  white-space: nowrap;
+  @media (max-width: 1024px) {
+    thead {
+      max-width: 160px !important;
+    }
+  }
+}
+.table-resposnive {
+  @media (max-width: 1024px) {
+    overflow: auto;
+  }
+}
+
+::ng-deep {
+  .action-menu {
+    position: relative;
+    // &::after {
+    //   content: "";
+    //   display: block;
+    //   position: absolute;
+    //   width: 0;
+    //   height: 0;
+    //   border-style: solid;
+    //   transform: rotate(269deg);
+    //   right: 16px;
+    // }
+    // &::before {
+    //   content: "";
+    //   display: block;
+    //   position: absolute;
+    //   width: 0;
+    //   height: 0;
+    //   border-style: solid;
+    //   transform: rotate(269deg);
+    //   right: 15px;
+    // }
+
+    // &::after {
+    //   top: -19px;
+    //   border-color: transparent transparent transparent #fff;
+    //   border-width: 10px;
+    // }
+
+    // &::before {
+    //   top: -22px;
+    //   border-color: transparent transparent transparent #d1d1d1;
+    //   border-width: 11px;
+    // }
+    button {
+      text-align: center;
+    }
+    .mat-menu-item {
+      border: 1px solid transparent !important;
+    }
+  }
+}
+
+// ::ng-deep .mdc-checkbox .mdc-checkbox__native-control:enabled~.mdc-checkbox__background {
+//   border: 2px $checkbox-bg-color solid !important;
+//   border-radius: 5px !important;
+
+// }

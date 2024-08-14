@@ -1,0 +1,14 @@
+<span
+  class="bg-label"
+  [ngClass]="{
+    activated: statusClass || statusClass == statusEnum.VERIFIED,
+    deactivated: !statusClass || statusClass == statusEnum.FAILED,
+    in_progress: !statusClass || statusClass == statusEnum.PROCESSING,
+    ongoing: !statusClass || statusClass == statusEnum.DRAFT,
+    published: statusClass || statusClass == statusEnum.PUBLISHED,
+    failed : !statusClass || statusClass == statusEnum.FAILED,
+    'no-background': !isBackground,
+    'not-available': statusText === 'N/A'
+  }"
+  >{{ statusText }}</span
+>

@@ -1,0 +1,7 @@
+@if(image){
+<img class="short-name {{ styleClass }}" [src]="image" alt="" />
+} @else{
+  <span class="short-name  {{ styleClass }}">{{
+    text | shortName | uppercase
+  }}</span>
+}

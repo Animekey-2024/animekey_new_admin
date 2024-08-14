@@ -1,0 +1,478 @@
+@import 'var';
+
+/*
+    DISPLAY FLEX PROPERTY
+*/
+
+@mixin position(
+  $position,
+  $top: null,
+  $right: null,
+  $bottom: null,
+  $left: null
+) {
+  position: $position;
+  top: $top;
+  right: $right;
+  bottom: $bottom;
+  left: $left;
+}
+
+@mixin flex($a-item, $j-align) {
+  display: flex;
+  align-items: $a-item;
+  justify-content: $j-align;
+}
+
+/*
+    FOR ANY DEFAULT IMAGE
+*/
+
+@mixin img($width, $height, $type, $radius) {
+  .img {
+    width: $width;
+    height: $height;
+    overflow: hidden;
+    background-color: #f9f9f9;
+    border: 1px solid #f2f2f2;
+    border-radius: $radius;
+    position: relative;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: $type;
+    }
+  }
+}
+
+/*
+  PANEL CARD FOR CARD LAYOUT
+*/
+
+@mixin panel {
+  .panel {
+    padding: 0;
+    background-color: #ffffff;
+    border-radius: 5px;
+    overflow: hidden;
+    &-header {
+      font-size: 18px;
+      padding: 15px;
+      font-weight: 500;
+    }
+    &-body {
+      font-size: 15px;
+      padding: 15px;
+      border-top: 1px solid rgba(0, 0, 0, 0.05);
+      // border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    }
+    &-footer {
+      padding: 15px;
+      font-weight: 500;
+    }
+  }
+}
+
+/*
+  DETAIL PAGE CSS FOR SHOWING INFO DETAILS
+*/
+
+@mixin info_data {
+  .info_data {
+    font-size: 1rem;
+    .info_single {
+      position: relative;
+      margin: 5px 0 10px;
+      .label {
+        font-size: 0.9rem;
+        color: rgba(0, 0, 0, 0.6);
+        word-break: break-all;
+      }
+      .value {
+        font-size: 1rem;
+        word-break: break-all;
+      }
+    }
+    @media (max-width: 576px) {
+      font-size: 0.8rem;
+    }
+  }
+}
+
+/*
+    BUBBLE UI CSS
+*/
+
+%bubble {
+  .bubble {
+    display: inline-block;
+    padding: 5px 10px;
+    background: #f1f1f1;
+    border-radius: 30px;
+    font-size: 16px;
+    border: 1px solid #cccccc;
+    margin-bottom: 5px;
+    & ~ .bubble {
+      margin-left: 5px;
+    }
+    &.active {
+      background-color: $primary-light;
+      border-color: $primary;
+    }
+  }
+}
+
+/*
+  MAT DIALOG POPUP CLOSE BUTTON
+*/
+
+@mixin mat-close {
+  .mat_close {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: 0;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    opacity: 0.8;
+    outline: none;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: 0.3s ease all;
+    &::after {
+      content: 'close';
+      font-family: 'Material Icons';
+      font-size: 22px;
+    }
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
+
+/*
+  FORM BUTTON CSS
+*/
+
+@mixin form-btn($type) {
+  .form-btn {
+    margin-top: -0.8rem;
+    padding: 1.5rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: $type;
+    // border-top: 2px solid $primary-light;
+    button {
+      min-width: 100px;
+      & ~ button {
+        margin-left: 15px;
+      }
+    }
+  }
+}
+
+/*
+  PAGE HEADING
+*/
+
+@mixin btn_groups {
+  .btn_groups {
+    button + button {
+      margin-left: 10px;
+    }
+  }
+}
+
+/*
+  SIMPLE TABLE
+*/
+
+@mixin table {
+  .table {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 20px;
+    tr {
+      td,
+      th {
+        padding: 8px;
+        line-height: 1.42857143;
+        vertical-align: top;
+        border-bottom: 1px solid #ddd;
+        // font-weight: 400;
+      }
+      th {
+        font-weight: 500;
+      }
+    }
+  }
+}
+
+/*
+  FULL WIDTH POPUP
+*/
+
+@mixin fullPopup {
+  ::ng-deep {
+    .fullPopup.cdk-overlay-pane {
+      max-width: 100% !important;
+      width: 100% !important;
+      height: 100%;
+      .mat-dialog-container {
+        border-radius: 0;
+        max-height: 100vh;
+        // padding: 10px;
+      }
+      .mat-dialog-content {
+        max-height: calc(100% - 92px);
+      }
+    }
+  }
+}
+
+/* form btn details page  */
+
+%mat-dialog-content {
+  .mat-dialog-content {
+    text-align: center;
+    overflow: visible;
+    .modal_message {
+      margin: 0 auto;
+      padding: 20px 0;
+      text-align: center;
+      font-weight: 500;
+      margin-bottom: 20px;
+      font-size: 18px;
+    }
+    .form-btn {
+      text-align: center;
+      padding-bottom: 8px;
+      button {
+        min-width: 120px;
+        @media (max-width: 380px) {
+          min-width: 100px;
+        }
+      }
+      .mat-button {
+        background-color: #e9e9e9;
+      }
+    }
+  }
+}
+
+/* add dynamic fields  */
+
+@mixin btn-groups {
+  display: flex;
+  button {
+    width: 130px;
+    &:first-child {
+      margin-right: 20px;
+    }
+  }
+}
+
+@mixin heading {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px dashed #00000014;
+  margin: 0px -20px;
+  padding: 0px 20px 20px;
+  position: relative;
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 20px;
+  &::before {
+    content: '';
+    position: absolute;
+    width: 6px;
+    height: 34px;
+    background: $primary;
+    top: 0px;
+    border-radius: 0px 10px 10px 0px;
+    left: 0px;
+  }
+}
+
+@mixin headermain {
+  border-bottom: 1px solid #00000017;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  background: white;
+  z-index: 99;
+  height: 64px;
+}
+
+@mixin footermain {
+  display: flex;
+  justify-content: space-between;
+  padding: 0px 20px;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  background: #00b5aa;
+  padding: 15px;
+  // box-shadow: 0px 0px 10px #0000001f;
+  // border-radius: 10px 10px 0px 0px;
+  height: 50px;
+  .left-footer {
+    display: flex;
+    li {
+      margin-right: 20px;
+      color: white;
+      position: relative;
+      cursor: pointer;
+      &::after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 2px;
+        background: white;
+        transition: all 0.5s;
+        left: 0;
+        bottom: -4px;
+      }
+      &:hover {
+        &::after {
+          width: 100%;
+        }
+      }
+    }
+  }
+  .right-footer {
+    .year {
+      margin-right: 17px;
+      position: relative;
+      top: 2px;
+    }
+    .comp-name {
+      font-weight: 500;
+    }
+  }
+}
+
+@mixin left-panel {
+  flex: 0 0 50%;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin right-panel {
+  flex: 0 0 50%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  position: relative;
+  overflow: auto;
+  background-color: $white;
+}
+
+@mixin flex($a-item, $j-align) {
+  display: flex;
+  align-items: $a-item;
+  justify-content: $j-align;
+}
+
+@mixin img-parts {
+  width: 160px;
+  height: 160px;
+  position: relative;
+  .img-section {
+    width: 160px;
+    height: 160px;
+    // background-color: #eff0f6;
+    overflow: hidden;
+    position: relative;
+    object-fit: contain;
+    border-radius: 50%;
+    &:after {
+      content: '';
+      position: absolute;
+      background-image: url('../assets/images/image_placeholder.svg');
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 51px;
+      height: 51px;
+      background-repeat: no-repeat;
+    }
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .camera {
+    // width: 40px;
+    // height: 40px;
+    border-radius: 50%;
+    position: absolute;
+    right: 10px;
+    bottom: 17px;
+    background: $white;
+    text-align: center;
+    // line-height: 59px;
+    border: solid 1px #d6dbde;
+    cursor: pointer;
+  }
+}
+
+@mixin page-header {
+  @include flex(center, space-between);
+  flex-wrap: wrap;
+  .left-header {
+    font-size: 20px;
+    font-weight: 600;
+    color: #000;
+    @media (max-width: 768px) {
+      margin-bottom: 15px;
+    }
+  }
+  .right-header {
+    @media (max-width: 576px) {
+      margin: 0px 0px 0px;
+    }
+    button {
+      margin-right: 15px;
+    }
+    .mat-stroked-button {
+      color: #323232 !important;
+    }
+    button {
+      @media (max-width: 576px) {
+        margin-bottom: 15px;
+      }
+      &:first-child {
+        margin-right: 15px;
+        // @media(max-width:576px){
+        //   margin-left: 0px;
+        // }
+      }
+      &:last-child {
+        margin-right: 0px;
+        @media (max-width: 576px) {
+          margin-left: 0px;
+        }
+      }
+      span {
+        mat-icon {
+          position: relative;
+          top: 5px;
+        }
+      }
+    }
+  }
+}

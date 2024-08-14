@@ -1,0 +1,168 @@
+<div class="profile-container grid-container">
+  <div class="header mb-3">
+    <div>
+      <app-breadcrumb></app-breadcrumb>
+    </div>
+    <div class="btn">
+      <ng-container *showIf="features.SUB_ADMINS; role: permissions.EDIT">
+        @if(loggedInUserId != subAdminId){
+        <app-button (click)="onSubAdminEdit()" [label]="btnSlugs['EDIT']"></app-button>
+        }
+      </ng-container>
+      <ng-container *showIf="features.SUB_ADMINS; role: permissions.STATUS">
+        @if(subAdminProfileDetail && loggedInUserId != subAdminId){
+        <app-button (click)="changeAction(subAdminProfileDetail)" [label]="
+            subAdminProfileDetail.isActive
+              ? btnSlugs['DEACTIVATE']
+              : btnSlugs['ACTIVATE']
+          "></app-button>
+        }
+      </ng-container>
+    </div>
+  </div>
+
+  <mat-card>
+    <mat-card-content>
+      <div class="body">
+        <div class="body-header mb-4">Admin Details</div>
+        <hr class="hr-light-grey" />
+        @if(subAdminProfileDetail){
+        <div class="details-page-wrapper w-100">
+          <div class="details-page-col">
+            @if(subAdminProfileDetail.avatar){
+            <app-image-preview [image]="subAdminProfileDetail.avatar" [text]="subAdminProfileDetail.name"
+              [styleClass]="'custom-height-width'"></app-image-preview>
+            } @if(!subAdminProfileDetail.avatar){
+            <div class="image-placeholder">
+              {{
+              subAdminProfileDetail
+              | imagePlaceholder
+              : subAdminProfileDetail.name.first +
+              ' ' +
+              subAdminProfileDetail.name.last
+              | async
+              }}
+            </div>
+            }
+          </div>
+          <div class="details-page-col">
+            <p class="details-page-heading">Admin ID</p>
+            <p class="details-page-value">{{ subAdminProfileDetail.id }}</p>
+          </div>
+          <div class="details-page-col">
+            <p class="details-page-heading">Name</p>
+            <p class="details-page-value text-captialize" [attr.title]="
+                subAdminProfileDetail.name.first +
+                ' ' +
+                subAdminProfileDetail.name.last
+              ">
+              {{
+              subAdminProfileDetail.name.first +
+              ' ' +
+              subAdminProfileDetail.name.last
+              }}
+            </p>
+          </div>
+          <div class="details-page-col">
+            <p class="details-page-heading">Email ID</p>
+            <p class="details-page-value" [attr.title]="subAdminProfileDetail.email">
+              {{ subAdminProfileDetail.email | optionalField }}
+            </p>
+          </div>
+          <div class="details-page-col">
+            <p class="details-page-heading">Phone Number</p>
+            <p class="details-page-value">
+              {{
+              subAdminProfileDetail.countryCode! +
+              subAdminProfileDetail.phoneNumber!
+              ? subAdminProfileDetail.countryCode +
+              ' ' +
+              subAdminProfileDetail.phoneNumber
+              : 'N/A'
+              }}
+            </p>
+          </div>
+          @if(subAdminProfileDetail.lastLogin){
+          <div class="details-page-col">
+            <p class="details-page-heading">Last login</p>
+            <p class="details-page-value">
+              <app-date [date]="subAdminProfileDetail.lastLogin" [showTime]="true"></app-date>
+            </p>
+          </div>
+          }
+          <!-- <div class="details-page-col">
+            <p class="details-page-heading">Zone</p>
+            <p class="details-page-value">
+              {{ subAdminProfileDetail.zone.name | optionalField }}
+            </p>
+          </div> -->
+          @if(subAdminProfileDetail.role){
+          <div class="details-page-col">
+            <p class="details-page-heading">Roles & Access</p>
+            <p class="details-page-value">
+              {{ subAdminProfileDetail.role.title | optionalField }}
+            </p>
+          </div>
+          }
+          @if(subAdminProfileDetail.createdBy){
+          <div class="details-page-col">
+            <p class="details-page-heading">Created By</p>
+            <p class="details-page-value text-captialize" [attr.title]="
+                subAdminProfileDetail.name
+                  ? subAdminProfileDetail.createdBy.name.first +
+                    ' ' +
+                    subAdminProfileDetail.createdBy.name.last
+                  : 'N/A'
+              ">
+              {{
+              subAdminProfileDetail.createdBy.name.first +
+              ' ' +
+              subAdminProfileDetail.createdBy.name.last | optionalField
+              }}
+            </p>
+          </div>
+          }
+          @if(subAdminProfileDetail.createdAt){
+          <div class="details-page-col">
+            <p class="details-page-heading">Created On</p>
+            <p class="details-page-value">
+              <app-date [date]="subAdminProfileDetail.createdAt" [showTime]="true"></app-date>
+            </p>
+          </div>
+          }
+
+          @if(subAdminProfileDetail.isActive){
+          <div class="details-page-col">
+            <p class="details-page-heading">Status</p>
+            <p class="details-page-value">
+              <app-status [isBackground]="false" [statusClass]="subAdminProfileDetail.isActive"
+                [status]="subAdminProfileDetail.isActive"></app-status>
+            </p>
+          </div>
+          }
+
+          @if(subAdminProfileDetail.isMFASetup){
+          <div class="details-page-col">
+            <p class="details-page-heading">Authentication Status</p>
+            <p class="details-page-value">
+              {{
+              subAdminProfileDetail.isMFASetup
+              ? 'Configured'
+              : 'Not Configured'
+              }}
+              <ng-container *showIf="features.SUB_ADMINS; role: permissions.EDIT">
+                @if(subAdminProfileDetail.isMFASetup){
+                <span class="reset-auth ml-3">
+                  <a class="details-page-value reset" (click)="onResetAuthenticator()">Reset</a>
+                </span>
+                }
+              </ng-container>
+            </p>
+          </div>
+          }
+        </div>
+        }
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

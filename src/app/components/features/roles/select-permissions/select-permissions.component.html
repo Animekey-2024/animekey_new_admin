@@ -1,0 +1,164 @@
+<div class="main-card p-3">
+  <div class="main-label mb-4">Access Details</div>
+  <hr class="hr-light-grey" />
+  <div class="role-head no-border">
+    <div class="inner-role-head wide-label">
+      <mat-icon>info</mat-icon>
+      <span>
+        At least one permission must be given while creating a role.
+      </span>
+    </div>
+    <div class="sub-detail">
+      <mat-checkbox
+        class="checkbox-wrapper"
+        (change)="selectAllView($event)"
+        [checked]="allViewPermissionsSelected"
+        [disabled]="
+          allAddPermissionsSelected ||
+          allEditPermissionsSelected ||
+          allActiveDeactivatePermissionsSelected
+        "
+        >Select All
+      </mat-checkbox>
+    </div>
+    <div class="sub-detail">
+      <mat-checkbox
+        class="checkbox-wrapper"
+        (change)="selectAllAdd($event)"
+        [checked]="allAddPermissionsSelected"
+      >
+        Select All
+      </mat-checkbox>
+    </div>
+    <div class="sub-detail">
+      <mat-checkbox
+        class="checkbox-wrapper"
+        (change)="selectAllEdit($event)"
+        [checked]="allEditPermissionsSelected"
+        >Select All
+      </mat-checkbox>
+    </div>
+    <div class="sub-detail">
+      <mat-checkbox
+        class="checkbox-wrapper"
+        (change)="selectAllDelete($event)"
+        [checked]="allDeletePermissionsSelected"
+        >Select All
+      </mat-checkbox>
+    </div>
+    <div class="sub-detail">
+      <mat-checkbox
+        class="checkbox-wrapper"
+        (change)="selectAllActionStatus($event)"
+        [checked]="allActiveDeactivatePermissionsSelected"
+        >Select All
+      </mat-checkbox>
+    </div>
+  </div>
+  @for (group of permissionGroups; track group.permissions) {
+  <div class="role-head" [class.disabled-row]="group?.isDisabled">
+    <div class="sub-detail wide-label">
+      <div class="role-head">
+        {{ group?.title }}
+        @if(toolTip[group.slug]){
+        <div class="role-tooltip">
+          <div class="inner-cst-tooltip">
+            <mat-icon>info</mat-icon>
+            <div
+              class="message"
+              [ngClass]="{
+                'one-row':
+                  !group.permissions.ADD &&
+                  !group.permissions.EDIT &&
+                  !group.permissions.STATUS
+              }"
+            >
+              @if(group.permissions.VIEW){
+              <span>
+                {{ toolTip[group.slug].VIEW }}
+              </span>
+              } @if(group.permissions.ADD){
+              <span>
+                {{ toolTip[group.slug].ADD }}
+              </span>
+              } @if(group.permissions.EDIT){
+              <span>
+                {{ toolTip[group.slug].EDIT }}
+              </span>
+              } @if(group.permissions.STATUS){
+              <span>
+                {{ toolTip[group.slug].STATUS }}
+              </span>
+              } @if(group.permissions.SHARE){
+              <span>
+                {{ toolTip[group.slug].SHARE }}
+              </span>
+              } @if(group.permissions.DELETE){
+              <span>
+                {{ toolTip[group.slug].DELETE }}
+              </span>
+              }
+            </div>
+          </div>
+        </div>
+        }
+      </div>
+    </div>
+    <div class="sub-detail">
+      @if(group.permissions.VIEW){
+      <mat-checkbox
+        class="checkbox-wrapper"
+        [checked]="group.isView"
+        (change)="assignViewPermission($event, group)"
+        [disabled]="group?.isDisabled || group.isViewDisabled"
+        >View</mat-checkbox
+      >
+      }
+    </div>
+    <div class="sub-detail">
+      @if(group.permissions.ADD){
+      <mat-checkbox
+        class="checkbox-wrapper"
+        [checked]="group.isAdd"
+        (change)="assignAddPermission($event, group)"
+        [disabled]="group?.isDisabled"
+        >Add</mat-checkbox
+      >
+      }
+    </div>
+    <div class="sub-detail">
+      @if(group.permissions.EDIT){
+      <mat-checkbox
+        class="checkbox-wrapper"
+        [checked]="group.isEdit"
+        (change)="assignWritePermission($event, group)"
+        [disabled]="group?.isDisabled"
+        >Edit</mat-checkbox
+      >
+      }
+    </div>
+    <div class="sub-detail">
+      @if(group.permissions.DELETE){
+      <mat-checkbox
+        class="checkbox-wrapper"
+        [checked]="group.isDelete"
+        (change)="assignDeletePermission($event, group)"
+        [disabled]="group?.isDisabled"
+        >Delete</mat-checkbox
+      >
+      }
+    </div>
+    <div class="sub-detail">
+      @if(group.permissions.STATUS){
+      <mat-checkbox
+        class="checkbox-wrapper"
+        [checked]="group.isStatus"
+        (change)="assignActionPermission($event, group)"
+        [disabled]="group?.isDisabled"
+        >Activate/Deactivate</mat-checkbox
+      >
+      }
+    </div>
+  </div>
+  }
+</div>

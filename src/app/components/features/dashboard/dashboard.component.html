@@ -1,0 +1,76 @@
+<div class="grid-container">
+  <div class="card-container mt-4 mb-4">
+    @for(data of cardData;track $index){
+    <mat-card class="card">
+      <mat-card-content>
+        <div>
+          <div>
+            <img [src]="data?.icon" class="profile-img" />
+          </div>
+          <div class="mt-2">
+            <mat-card-title>{{ data?.title }}</mat-card-title>
+            <mat-card-subtitle class="mt-2">{{ data?.subtitle }}</mat-card-subtitle>
+          </div>
+        </div>
+      </mat-card-content>
+      <mat-card-content class="card-content"> </mat-card-content>
+    </mat-card>
+    }
+    @empty{
+
+    }
+  </div>
+  <mat-grid-list cols="2" rowHeight="350px">
+    @for (card of cards | async; track card) {
+    <mat-grid-tile [colspan]="card.cols" [rowspan]="card.rows">
+      <mat-card class="dashboard-card">
+        <mat-card-header>
+          <mat-card-title>
+            {{card.title}}
+            <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu" xPosition="before">
+              <button mat-menu-item>Expand</button>
+              <button mat-menu-item>Remove</button>
+            </mat-menu>
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="dashboard-card-content">
+          <div>Card Content Here</div>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+    }
+    @empty{
+
+    }
+  </mat-grid-list>
+
+  <mat-grid-list cols="3" rowHeight="350px">
+    @for (card of cards2 | async; track card) {
+    <mat-grid-tile [colspan]="card.cols" [rowspan]="card.rows">
+      <mat-card class="dashboard-card">
+        <mat-card-header>
+          <mat-card-title>
+            {{card.title}}
+            <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu" xPosition="before">
+              <button mat-menu-item>Expand</button>
+              <button mat-menu-item>Remove</button>
+            </mat-menu>
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="dashboard-card-content">
+          <div>Card Content Here</div>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+    }
+    @empty {
+
+    }
+  </mat-grid-list>
+</div>

@@ -1,0 +1,42 @@
+<div class="data-card gap-3 d-flex flex-wrap mt-3">
+  @for(cardData of dataCardInput; track cardData.data){
+  <mat-card d-flex>
+    <mat-card-content>
+      <div class="d-flex flex-column">
+        <span class="card-title">{{ cardData?.title }}</span>
+        @for(item of cardData?.data;track item){
+        <div class="d-flex flex-row align-items-center mt-3">
+          <ng-container>
+            <div class="d-flex flex-column gap-3">
+              <div class="data-container d-flex align-items-center gap-3">
+                <div class="image-container">
+                  <img class="image" [src]="item.icon" alt="data-icon" />
+                </div>
+                <div class="data-value-card d-flex flex-column">
+                  <span class="card-value">{{ item?.graphValue }}</span>
+                  <span class="card-status">{{ item?.graphStatus }}</span>
+                </div>
+              </div>
+              <!-- <div class="data-value-card d-flex align-items-center">
+                <div
+                  class="image-graph-container d-flex justify-content-center align-items-center mr-1"
+                >
+                  <img class="image" [src]="upArrow" alt="data-icon" />
+                </div>
+                <div class="data-value-card d-flex flex-row">
+                  <span class="graph-value mr-1 success">{{
+                    item?.graphFilterNumber
+                  }}</span>
+                  <span class="graph-text">{{ item?.graphText }}</span>
+                </div>
+              </div> -->
+            </div>
+            <hr class="hr-grey ml-4 mr-4" />
+          </ng-container>
+        </div>
+        }
+      </div>
+    </mat-card-content>
+  </mat-card>
+}
+</div>

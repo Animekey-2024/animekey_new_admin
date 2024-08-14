@@ -1,0 +1,71 @@
+<div class="grid-container">
+  <div class="mb-3">
+    <app-breadcrumb></app-breadcrumb>
+  </div>
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <mat-card class="mb-4">
+      <mat-card-content>
+        <div class="p-3">
+          <div class="main-label mb-4">Role Details</div>
+          <hr class="hr-light-grey" />
+          <div class="add-flow">
+            <div class="permission-card pt-3">
+              <div class="d-flex flex-wrap gap-3 role-id-name">
+                @if(isEditMode){
+                <div class="input-feild">
+                  <app-label-text [labelText]="'Role ID'"></app-label-text>
+                  <mat-form-field appearance="outline" class="w-100">
+                    <input matInput formControlName="id" maxlength="14" bdAutoFocus bdUppercase placeholder="Role ID" />
+                    <mat-error>{{
+                      form | inputError : 'roleId' : 'Role ID'
+                      }}</mat-error>
+                  </mat-form-field>
+                </div>
+                }
+                <div class="input-feild">
+                  <app-label-text [labelText]="'Role Name*'"></app-label-text>
+                  <mat-form-field appearance="outline" class="w-100">
+                    <input matInput formControlName="title" maxlength="50" placeholder="Role Name" />
+                    <mat-error>{{
+                      form | inputError : 'title' : 'Role'
+                      }}</mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="input-feild">
+                <app-label-text [labelText]="'Description'"></app-label-text>
+                <mat-form-field appearance="outline" class="w-100">
+                  <textarea matInput formControlName="description" maxlength="150" rows="3" class="role-textarea"
+                    placeholder="Description" cdkTextareaAutosize></textarea>
+                  <mat-hint align="end">{{ form.controls['description'].value.length }}/{{
+                    validationCriteria.subTitleMaxLength
+                    }}</mat-hint>
+                  <mat-error>{{
+                    form | inputError : 'description' : 'Description'
+                    }}</mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card>
+      <mat-card-content>
+        <div class="role-permision">
+          <app-select-permissions [permissions]="permissionGroups"></app-select-permissions>
+        </div>
+        <mat-divider></mat-divider>
+        <div class="d-flex gap-3 justify-content-center pt-4">
+          <button type="button" mat-stroked-button class="btn-small" [routerLink]="routes.ROLES">
+            Cancel
+          </button>
+          <button type="submit" mat-flat-button color="primary" class="butn butn__new btn-small">
+            {{ isEditMode ? 'Update' : 'Submit' }}
+          </button>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </form>
+</div>

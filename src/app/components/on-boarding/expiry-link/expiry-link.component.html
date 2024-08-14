@@ -1,0 +1,17 @@
+<div class="expiry-link-page">
+  <mat-card>
+    <img [src]="icons.LOGO" class="logo-image" alt="" srcset="" />
+    <h1>Link Expired</h1>
+    <p>
+      Your reset passowrd link has been expired try it using
+      <a type="button" [routerLink]="'FORGOT_PASSWORD' | absolutePath"
+        >Forgot Password</a
+      >
+      or Contact Admin
+    </p>
+    <hr />
+    <p>
+      Contact us at <a href="mailTo:{{ adminEmail }}">{{ adminEmail }}</a>
+    </p>
+  </mat-card>
+</div>

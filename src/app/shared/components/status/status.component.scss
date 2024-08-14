@@ -1,0 +1,78 @@
+@import '../../../../scss/var';
+
+.bg-label {
+  border-radius: 30px;
+  padding: 5px 15px;
+  font-size: 13px;
+}
+
+.activated {
+  color: $status_green;
+  background-color: rgba($status_green, 0.1);
+  text-transform: capitalize;
+}
+.deactivated {
+  color: $status_red;
+  background-color: rgba($status_red, 0.1);
+  text-transform: capitalize;
+}
+.in_progress {
+  color: $warning;
+  background-color: rgba($warning, 0.1);
+  text-transform: capitalize;
+}
+
+.pending {
+  color: $text-color;
+  background-color: rgba($text-color, 0.1);
+  text-transform: capitalize;
+}
+
+.published {
+  color: $status_green;
+  background-color: rgba($status_green, 0.1);
+  text-transform: capitalize;
+}
+
+.booked {
+  color: $status_booked;
+  background-color: rgba($status_booked, 0.1);
+  text-transform: capitalize;
+}
+
+.ongoing {
+  color: $status_ongoing;
+  background-color: rgba($status_ongoing, 0.1);
+  text-transform: capitalize;
+}
+
+.cancelled {
+  color: $status_cancelled;
+  background-color: rgba($status_cancelled, 0.1);
+  text-transform: capitalize;
+}
+
+.completed {
+  color: $status_completed;
+  background-color: rgba($status_completed, 0.1);
+  text-transform: capitalize;
+}
+
+.failed {
+  color: $status_red;
+  background-color: rgba($status_red, 0.1);
+  text-transform: capitalize;
+}
+
+.no-background {
+  background: none;
+  padding: 0;
+  border-radius: 0;
+  font-size: 18px;
+  display: inline-block;
+  margin-bottom: 0rem;
+}
+
+.not-available {
+  color: #8a8a8a !important;
+}

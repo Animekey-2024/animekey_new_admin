@@ -1,0 +1,80 @@
+<div class="account-wrapper">
+  <app-onboarding-layout></app-onboarding-layout>
+  <div class="right-portion">
+    <div class="right-portion">
+      <!-- <img
+        [src]="icons.LOGO"
+        class="mb-5 onboarding-logo"
+        alt="Admin Accelerator logo"
+        srcset=""
+      /> -->
+      <div class="login-wrap">
+        <div class="login-head">Code Verification</div>
+        <div class="login-sub-head">
+          Enter the verification code from the Google Authenticator App
+        </div>
+
+        <div class="form-section">
+          <form [formGroup]="otpVerificationForm" (ngSubmit)="onVerify()">
+            <!-- <app-label-text
+              [labelText]="'Enter Verification Code*'"
+            ></app-label-text> -->
+            <mat-form-field appearance="outline" class="w-100 mouse-pointer">
+              <!-- <mat-label>Enter Verification Code</mat-label> -->
+              <input
+                matInput
+                [type]="hide ? 'text' : 'password'"
+                maxlength="6"
+                formControlName="otp"
+                placeholder="Verification Code"
+                appAutoFocus
+              />
+
+              @if(eyeIcon){
+              <button
+                class="eye-icon"
+                mat-icon-button
+                mat-icon-button
+                matSuffix
+                (click)="hide = !hide"
+                [attr.aria-label]="'Hide password'"
+                [attr.aria-pressed]="hide"
+                type="button"
+              >
+                <mat-icon>{{
+                  hide ? 'visibility' : 'visibility_off'
+                }}</mat-icon>
+              </button>
+              }
+              <mat-error>
+                {{
+                  otpVerificationForm
+                    | inputError : 'otp' : 'Verification Code' : true
+                }}
+              </mat-error>
+            </mat-form-field>
+            <div class="form-actions d-flex flex-column gap-3 mt-3">
+              <button
+                type="submit"
+                mat-flat-button
+                color="primary"
+                class="w-100"
+                [disabled]="otpVerificationForm.invalid"
+              >
+                Verify
+              </button>
+              <button
+                type="button"
+                class="w-100"
+                mat-button
+                [routerLink]="routes.LOGIN.fullUrl"
+              >
+                Back to Login
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

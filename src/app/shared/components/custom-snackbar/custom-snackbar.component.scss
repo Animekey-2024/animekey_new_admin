@@ -1,0 +1,14 @@
+.site-snackbar {
+  .icon_background {
+    flex-basis: 60px;
+    height: 60px;
+    max-width: 65px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 2px;
+  }
+  .snackbar-message {
+    flex: 1;
+  }
+}

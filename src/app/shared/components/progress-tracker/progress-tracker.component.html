@@ -1,0 +1,33 @@
+
+<mat-accordion class="progtess-tracker">
+  <mat-expansion-panel class="mat-elevation-z6">
+    <mat-expansion-panel-header>
+      <mat-panel-title class="d-flex justify-content-between pr-0">
+        <span>Uploading</span>
+        @if(progressValue < 100) {
+        <div class="upload-progress">
+          <span class="progress-label">{{ progressValue }}%</span>
+          <mat-spinner diameter="40"></mat-spinner>
+        </div>
+        } @if(progressValue && progressValue >= 100) {
+        <mat-icon color="primary">check_circle</mat-icon>
+        }
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <!-- <div class="progress-container">
+      @for (item of uploadProgressData; track $index) {
+      <mat-card class="mb-2">
+        <mat-card-content>
+          <div class="d-flex justify-content-between align-items-center">
+            <span class="text-ellipsis pr-2">{{ item.title }}</span>
+            <div class="upload-progress">
+              <span class="progress-label">{{ item.progress }}%</span>
+              <mat-spinner diameter="40"></mat-spinner>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+      }
+    </div> -->
+  </mat-expansion-panel>
+</mat-accordion>

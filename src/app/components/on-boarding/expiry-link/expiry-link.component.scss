@@ -1,0 +1,41 @@
+@import '../../../../scss/var';
+
+.expiry-link-page {
+  display: flex;
+  height: 100vh;
+
+  mat-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 2rem 3rem;
+    width: 60vw;
+    margin: auto;
+    line-height: 1.4;
+    text-align: center;
+    .logo-image {
+      width: 200px;
+      margin-bottom: 3rem;
+    }
+    mat-icon {
+      font-size: 4rem;
+      width: 60px;
+      height: 60px;
+      color: $red;
+      margin-bottom: 1.5rem;
+    }
+
+    h1 {
+      font-size: 45px;
+      margin-bottom: 1.5rem;
+    }
+
+    p {
+      font-size: 1.4rem;
+    }
+    a {
+      font-size: 1.4rem;
+    }
+  }
+}

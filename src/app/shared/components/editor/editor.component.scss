@@ -1,0 +1,34 @@
+.required-field {
+  margin-top: 5px;
+  font-size: 12px;
+}
+.btns {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 2px 0 16px 0;
+  .icn {
+    background: #f2f2f2;
+    padding: 4px;
+    border: 1px solid #eaeaea;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &:hover {
+      box-shadow: 0 2px 5px 1px #f2f2f2;
+    }
+    img {
+      width: 18px;
+    }
+  }
+}
+
+.ql-container {
+  background-color: #191d20 !important;
+  color: #fff;
+}

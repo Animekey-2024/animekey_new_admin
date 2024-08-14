@@ -1,0 +1,35 @@
+<div [formGroup]="form">
+  <!-- <label class="mb-1" *ngIf="label">{{ label }}<br /></label> -->
+  <mat-form-field
+    appearance="outline"
+    class="w-100"
+    [ngClass]="!!isDisabled ? 'disabled-event' : ''"
+  >
+    <input
+      (click)="picker.open()"
+      matInput
+      [matDatepicker]="picker"
+      (dateChange)="onDateChanged()"
+      readonly
+      [formControlName]="controlName"
+      [(ngModel)]="value"
+      ngDefaultControl
+      [min]="disabledPastDate"
+      [max]="maxDate"
+      [placeholder]="placeHolder"
+    />
+    <mat-datepicker-toggle
+      matIconSuffix
+      [for]="picker"
+      [ngClass]="!!isDisabled ? 'disabled-event' : ''"
+    ></mat-datepicker-toggle>
+    <mat-datepicker
+      #picker
+      (opened)="toggleDatePicker(true)"
+      (closed)="toggleDatePicker(false)"
+    ></mat-datepicker>
+    <mat-error>{{
+      form | inputError : controlName : errorText : false : 'dropdown'
+    }}</mat-error>
+  </mat-form-field>
+</div>

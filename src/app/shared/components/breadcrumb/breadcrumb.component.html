@@ -1,0 +1,10 @@
+<div class="bg-white">
+  <ul class="d-flex breadcrumb-card">
+    <li *ngFor="let breadcrumb of breadcrumbs$ | async; let lastIndex = last">
+      <a [routerLink]="breadcrumb.url">
+        <span>{{ breadcrumb.label }}</span>
+        <span *ngIf="!lastIndex"> / </span>
+      </a>
+    </li>
+  </ul>
+</div>

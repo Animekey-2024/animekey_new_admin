@@ -1,0 +1,163 @@
+<div class="add-edit-sub-admin grid-container">
+  <div class="module-title">
+    <app-breadcrumb></app-breadcrumb>
+  </div>
+  <div class="content-container">
+    <div class="page-title mb-3">Sub Admin Details</div>
+    <hr class="hr-light-grey" />
+    <form
+      [formGroup]="subAdminProfileForm"
+      (ngSubmit)="addEditSubAdminProfile()"
+    >
+      <div class="add-edit-sub-admin-form gap-5">
+        <div class="top-section">
+          <!-- Image uploader component -->
+          <div class="image-section py-3">
+            <p class="profile-image-title">Sub Admin Image</p>
+            <app-image-uploader
+              (fileChange)="onFileSelect($event)"
+              [fileImage]="subAdminProfileForm.get('pictureUrl')?.value"
+              [cropImageInPopup]="true"
+              [roundCropper]="true"
+              [disabled]="this.canEdit"
+              [imageTextTemplate]="imageTextTemplate"
+              [maxFileSizeInKB]="1024"
+              [errorKey]="'Profile Image'"
+              [fileTypes]="allowedFormats"
+            ></app-image-uploader>
+            <ng-template #imageTextTemplate>
+              <p class="image-upload-warning mt-2">
+                {{ imageErrorText }}
+              </p>
+            </ng-template>
+          </div>
+        </div>
+        <div class="bottom-section">
+          <div class="input-container d-flex gap-5">
+            <!-- First Name -->
+            <div class="d-flex flex-column w-40">
+              <app-label-text [labelText]="'First Name*'"></app-label-text>
+              <mat-form-field appearance="outline">
+                <input
+                  type="text"
+                  matInput
+                  placeholder="First Name"
+                  formControlName="firstName"
+                  appInputRef
+                  (keyup)="onValueChange()"
+                  [maxlength]="validationCriteria.nameMaxLength"
+                />
+                <mat-error>{{
+                  subAdminProfileForm | inputError : 'firstName' : 'First Name'
+                }}</mat-error>
+              </mat-form-field>
+            </div>
+
+            <!-- Last Name -->
+            <div class="d-flex flex-column w-40">
+              <app-label-text [labelText]="'Last Name*'"></app-label-text>
+              <mat-form-field appearance="outline">
+                <input
+                  type="text"
+                  placeholder="Last Name"
+                  matInput
+                  appInputRef
+                  formControlName="lastName"
+                  (keyup)="onValueChange()"
+                  [maxlength]="validationCriteria.nameMaxLength"
+                />
+                <mat-error>{{
+                  subAdminProfileForm | inputError : 'lastName' : 'Last Name'
+                }}</mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="input-container d-flex gap-5">
+            <!-- Phone number along with country code -->
+            <div class="form-phone w-40">
+              <app-label-text [labelText]="'Phone Number'"></app-label-text>
+              <div class="d-flex gap-3 align-items-start">
+                <app-common-select
+                  [dataList]="country_codes"
+                  class="w-20"
+                  (valueChange)="setValue($event, 'countryCode')"
+                  [form]="subAdminProfileForm"
+                  [controlName]="'countryCode'"
+                  [errorText]="'Code'"
+                  [placeholderLabel]="'Code'"
+                  [isSearchable]="true"
+                  panelWidth="'28%'"
+                ></app-common-select>
+                <mat-form-field appearance="outline" class="w-100">
+                  <input
+                    type="tel"
+                    placeholder="Phone Number"
+                    matInput
+                    formControlName="phoneNumber"
+                    (keyup)="onValueChange()"
+                    (change)="onPhoneNumberChange()"
+                  />
+                  <mat-error>{{
+                    subAdminProfileForm
+                      | inputError : 'phoneNumber' : 'Phone Number' : true
+                  }}</mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+            <!-- Email -->
+            <app-email
+              [form]="subAdminProfileForm"
+              label="Email*"
+              class="w-40"
+              controlName="email"
+              [placeHolder]="'Email'"
+              (keyup)="onValueChange()"
+              [isDisabled]="isLoggedInUser"
+            ></app-email>
+          </div>
+          <div class="input-container d-flex gap-5">
+            <!--Role and Access-->
+            <app-common-select
+              [dataList]="roles"
+              class="w-40"
+              [label]="'Role and Access*'"
+              (valueChange)="setValue($event, 'role')"
+              [form]="subAdminProfileForm"
+              [controlName]="'role'"
+              [errorText]="'Role and Access'"
+              [isSearchable]="true"
+              [isDisabled]="isLoggedInUser"
+              [placeholderLabel]="'Role and Access'"
+            ></app-common-select>
+            <!--Zones-->
+            <!-- <app-common-select
+              [dataList]="zones"
+              class="w-40"
+              [label]="'Zone*'"
+              (valueChange)="setValue($event, 'zone')"
+              [form]="subAdminProfileForm"
+              [controlName]="'zone'"
+              [errorText]="'Zone'"
+              [isSearchable]="true"
+              [isDisabled]="isLoggedInUser"
+              [placeholderLabel]="'Zone'"
+            ></app-common-select> -->
+          </div>
+        </div>
+      </div>
+      <div class="form-actions d-flex align-items-center gap-3 mt-3">
+        <app-button
+          (onClick)="onCancel()"
+          [isStrokeBtn]="true"
+          [label]="btnSlugs['CANCEL']"
+          type="button"
+        ></app-button>
+        <app-button
+          [type]="'submit'"
+          [disabled]="subAdminProfileForm.invalid || submitDisabled"
+          [label]="btnSlugs['SUBMIT']"
+        ></app-button>
+      </div>
+    </form>
+  </div>
+</div>

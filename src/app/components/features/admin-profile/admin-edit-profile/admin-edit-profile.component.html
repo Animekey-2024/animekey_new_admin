@@ -1,0 +1,146 @@
+<div class="add-edit-sub-admin grid-container">
+  <div class="module-title">
+    <app-breadcrumb></app-breadcrumb>
+  </div>
+  <div class="content-container">
+    <div class="mb-3 main-label">Profile Details</div>
+    <hr class="hr-light-grey" />
+    <form [formGroup]="editProfileForm" (ngSubmit)="editProfile()">
+      <div class="add-edit-sub-admin-form gap-5">
+        <div class="top-section">
+          <!-- Image uploader component -->
+          <div class="image-section py-3">
+            <p>Profile Image</p>
+            <app-image-uploader
+              (fileChange)="onFileSelect($event)"
+              [fileImage]="editProfileForm.get('pictureUrl')?.value"
+              [cropImageInPopup]="true"
+              [roundCropper]="true"
+              [disabled]="this.canEdit"
+              [imageTextTemplate]="imageTextTemplate"
+              [maxFileSizeInKB]="1024"
+              [errorKey]="'Profile Image'"
+              [fileTypes]="allowedFormats"
+            ></app-image-uploader>
+            <ng-template #imageTextTemplate>
+              <p class="image-upload-warning mt-2">
+                {{ imageErrorText }}
+              </p>
+            </ng-template>
+          </div>
+        </div>
+        <div class="bottom-section">
+          <div class="input-container d-flex gap-5">
+            <!-- First Name -->
+            <div class="d-flex flex-column w-40">
+              <app-label-text [labelText]="'First Name*'"></app-label-text>
+              <mat-form-field appearance="outline">
+                <input
+                  type="text"
+                  matInput
+                  placeholder="First Name"
+                  formControlName="firstName"
+                  (keyup)="onValueChange()"
+                  appInputRef
+                  [maxlength]="validationCriteria.nameMaxLength"
+                />
+                <mat-error>{{
+                  editProfileForm | inputError : 'firstName' : 'First Name'
+                }}</mat-error>
+              </mat-form-field>
+            </div>
+
+            <!-- Last Name -->
+            <div class="d-flex flex-column w-40">
+              <app-label-text [labelText]="'Last Name*'"></app-label-text>
+              <mat-form-field appearance="outline">
+                <input
+                  type="text"
+                  placeholder="Last Name"
+                  matInput
+                  formControlName="lastName"
+                  (keyup)="onValueChange()"
+                  appInputRef
+                  [maxlength]="validationCriteria.nameMaxLength"
+                />
+                <mat-error>{{
+                  editProfileForm | inputError : 'lastName' : 'Last Name'
+                }}</mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="input-container d-flex gap-5">
+            <!-- Phone number along with country code -->
+            <div class="form-phone w-40">
+              <app-label-text [labelText]="'Phone Number'"></app-label-text>
+              <div class="d-flex gap-3 align-items-start">
+                <app-common-select
+                  [dataList]="country_codes"
+                  class="w-30"
+                  (valueChange)="setValue($event, 'countryCode')"
+                  [form]="editProfileForm"
+                  [controlName]="'countryCode'"
+                  [errorText]="'Code'"
+                  [placeholderLabel]="'Code'"
+                  [isSearchable]="true"
+                  [panelWidth]="'28%'"
+                ></app-common-select>
+                <mat-form-field appearance="outline" class="w-100">
+                  <input
+                    type="tel"
+                    placeholder="Phone Number"
+                    matInput
+                    formControlName="phoneNumber"
+                    (keyup)="onValueChange()"
+                    (change)="onPhoneNumberChange()"
+                    appAllowOnlyNumeric
+                  />
+                  <mat-error>{{
+                    editProfileForm
+                      | inputError : 'phoneNumber' : 'Phone Number' : true
+                  }}</mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+            <!-- Email -->
+            <app-email
+              [form]="editProfileForm"
+              label="Email*"
+              class="w-40"
+              controlName="email"
+              [placeHolder]="'Email'"
+              [isDisabled]="editMode"
+            ></app-email>
+          </div>
+          <div class="input-container d-flex gap-5">
+            <!--Role and Access-->
+            <app-common-select
+              [dataList]="roles"
+              (valueChange)="setValue($event, 'role')"
+              [form]="editProfileForm"
+              [controlName]="'role'"
+              [errorText]="'Role and Access'"
+              [placeholderLabel]="'Role and Access'"
+              [isSearchable]="true"
+              [isDisabled]="editMode"
+              [label]="'Role and Access'"
+            ></app-common-select>
+          </div>
+        </div>
+      </div>
+      <div class="form-actions d-flex align-items-center gap-3 mt-3">
+        <app-button
+          (onClick)="onCancel()"
+          [isStrokeBtn]="true"
+          [label]="btnSlugs['CANCEL']"
+          type="button"
+        ></app-button>
+        <app-button
+          [type]="'submit'"
+          [disabled]="editProfileForm.invalid || submitDisabled"
+          [label]="btnSlugs['UPDATE']"
+        ></app-button>
+      </div>
+    </form>
+  </div>
+</div>

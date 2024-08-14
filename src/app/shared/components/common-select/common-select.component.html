@@ -1,0 +1,34 @@
+<div [formGroup]="form">
+  <app-label-text [labelText]="label" [disabled]="isDisabled"></app-label-text>
+  <mat-form-field
+    class="dropdown"
+    appearance="outline"
+    [className]="styleClass"
+    [ngClass]="isDisabled ? 'disabled-event' : ''"
+  >
+    <mat-select
+      [placeholder]="placeholderLabel"
+      [multiple]="isMultipleSelect"
+      [formControlName]="controlName"
+      (selectionChange)="sendValue()"
+      [panelWidth]="panelWidth"
+      [panelClass]="panelClass"
+    >
+      <mat-select-search
+        [formControl]="filterDataCtrl"
+        *ngIf="!!isSearchable"
+        [placeholderLabel]="placeholderLabel"
+      ></mat-select-search>
+      <mat-option
+        *ngFor="let data of filteredData | async"
+        [value]="data.value"
+     
+      >
+        {{ data.name }} <span *ngIf="combineKeyValue"> ({{ data.value }})</span>
+      </mat-option>
+    </mat-select>
+    <mat-error>{{
+      form | inputError : controlName : errorText : false : 'dropdown'
+    }}</mat-error>
+  </mat-form-field>
+</div>

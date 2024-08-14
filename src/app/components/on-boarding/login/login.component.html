@@ -1,0 +1,53 @@
+<div class="account-wrapper">
+  <app-onboarding-layout></app-onboarding-layout>
+  <div class="right-portion">
+    <div class="right-portion">
+      <div class="login-wrap">
+        <div class="login-head">Welcome to Animekey Admin Panel.</div>
+        <div class="login-sub-head">Login to access your account</div>
+        <div class="forms">
+          <form
+            [formGroup]="loginForm"
+            (ngSubmit)="onSubmit()"
+            class="login-error"
+          >
+            <app-email
+              [form]="loginForm"
+              label="Email Address*"
+              controlName="email"
+              [placeHolder]="'Email Address'"
+            ></app-email>
+
+            <app-password
+              [form]="loginForm"
+              label="Password*"
+              controlName="password"
+              [placeHolder]="'Password'"
+            ></app-password>
+
+            <div class="text-right mouse-pointer mb-3">
+              <button
+                class="forget-link cursor-pointer"
+                type="button"
+                mat-button
+                color="primary"
+                [routerLink]="routes.FORGET_PASSWORD.fullUrl"
+              >
+                Forgot Password?
+              </button>
+            </div>
+
+            <div class="btn-large">
+              <app-button
+                [disabled]="loginForm.invalid"
+                label="Login"
+                [class]="'w-100'"
+                (enter)="onSubmit()"
+              ></app-button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

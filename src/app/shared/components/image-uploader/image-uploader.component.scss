@@ -1,0 +1,99 @@
+@import '../../../../scss/mix';
+@import '../../../../scss/var';
+
+.upload-img {
+  @include img-parts;
+  display: flex;
+  cursor: pointer;
+}
+.remove-file {
+  position: absolute;
+  left: 115px;
+  font-size: 30px;
+  color: $primary;
+  cursor: pointer;
+  top: 5px;
+  height: auto;
+  width: auto;
+  background: white;
+  border-radius: 50%;
+  padding: 5px;
+}
+.disable-section {
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+.image-text {
+  width: 200px;
+}
+
+.csv-image {
+  height: 62px;
+  border: #f1edee solid 1px;
+  border-radius: 13px;
+}
+
+.child {
+  display: flex;
+  width: 250px;
+  justify-content: space-between;
+  align-items: center;
+
+  span {
+    font-size: 12px;
+  }
+
+  .remove-csv-file {
+    font-size: 18px;
+    color: $red;
+    cursor: pointer;
+    height: auto;
+    width: auto;
+    background: #db00001a;
+    border-radius: 50%;
+    padding: 5px;
+  }
+}
+
+.border {
+  border: #e6e6e6 solid 1px;
+}
+
+.image-container {
+  position: relative; 
+}
+
+.image-actions {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+}
+
+.image-actions button {
+  margin: 5px; 
+}
+.image{
+  // width: 90%;
+  // height: 450px;
+  max-width: 100%;
+  height: auto;
+}
+.add-media-container{
+  justify-content: center;
+  padding: 60px;
+  margin-top: 24px;
+  background-color: azure;
+  border: thin dashed aqua;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  // margin-right: 20px;
+}
+
+.media-container{
+  margin-top: 24px;
+  overflow: hidden;
+}

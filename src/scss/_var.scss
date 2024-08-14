@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap');
+
+// $primary-light: lighten($primary, 43%);
+$primary: #1d3300;
+
+$primary-light: #76B627;
+$primary-dark: darken($primary, 40%);
+$primary-gradient : linear-gradient(to bottom, rgba(25, 67, 0, 1), rgba(0, 0, 0, 1));
+
+$secondary: #c7b4a9;
+$secondary-light: lighten($secondary, 50%);
+$secondary-dark: darken($secondary, 40%);
+
+/* default colors */
+$white: #ffffff;
+$black: #000000;
+$yellow: #d68d00;
+$blue: #4444e4;
+$grey: gray;
+$link: #e17582;
+$red: #df0000;
+$green: #0e9735;
+$info: #25a9e0;
+$lightgray: #bcbcbc;
+$warning: #d68d00;
+$status_green: #0e9735;
+$status_red: #df0000;
+$background: #f5f5f5;
+$text-color: #767676;
+$border-color: #dddddd;
+$lighten-green: #f6fef9;
+
+$status_completed: #00968a;
+$status_ongoing: #d68d00;
+$status_booked: #5282f0;
+$status_cancelled: #ed1111;
+
+/* Fonts */
+
+$blue-new: #5282f0;
+
+$font: 'Mulish', sans-serif;
+// $mild: #8a8a8a;
+$light-grey: #eeeeee;
+$table-border-color: #dadbe4;
+$thead-bg-color: #d6dbde;
+$dark: #323232;
+$checkbox-bg-color: rgba(0, 0, 0, 0.24);
+$btn-stroke-color: #868686;
+$label-color: #272727;
+$value-color: #132841;
+$detail-value: #8a8a8a;
+$mild : #737791;

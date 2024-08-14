@@ -1,0 +1,157 @@
+<mat-toolbar color="primary" class="site-header d-flex justify-content-between">
+  @if(profileDetail){
+  <div class="d-flex flex-column ml-3 mt-3">
+    <h2 class="title">Hi, {{profileDetail?.name?.first + ' ' + profileDetail?.name?.last}}</h2>
+    <p class="sub-title">Let's check Animekey Today</p>
+  </div>
+  <ng-container>
+
+    <div class="data-contain d-flex align-items-center px-2">
+      <img [src]="NOTIFICATION" alt="notification icon" class="mr-4 cursor-pointer" />
+      @if(profileDetail?.avatar){
+      <img [src]="profileDetail.avatar" alt="profile" class="user-image" srcset="" />
+      } @if(!profileDetail.avatar){
+      <div class="header-image-placeholder">
+        {{
+        profileDetail
+        | imagePlaceholder
+        : profileDetail.name.first + ' ' + profileDetail.name.last
+        | async
+        }}
+      </div>
+      }
+      <div class="d-flex flex-column ml-3 user-name-wrapper">
+        <span class="user-name-header text-truncate text-captialize">{{
+          profileDetail.name.first + ' ' + profileDetail.name.last
+          }}</span>
+        <span class="user-name-sub-header mt-1">{{profileDetail?.role?.title}}</span>
+      </div>
+      <button mat-button [matMenuTriggerFor]="profileMenu" aria-label="Example icon-button with a user">
+        <span class="material-icons" style="color: rgb(128, 128, 128)">
+          arrow_drop_down
+        </span>
+      </button>
+    </div>
+    <mat-menu class="menus-card" #profileMenu="matMenu">
+      <div class="card">
+        <div class="header">
+          <div class="profile-data-container d-flex align-items-center p-3">
+            <div class="image mr-3">
+              @if(profileDetail?.avatar){
+              <img [src]="[profileDetail.avatar]" alt="profile" class="user-image" srcset="" />
+              } @if(!profileDetail.avatar){
+              <div class="img-placeholder">
+                {{
+                profileDetail
+                | imagePlaceholder
+                : profileDetail.name.first + ' ' + profileDetail.name.last
+                | async
+                }}
+              </div>
+              }
+            </div>
+            <div class="user-dropdown text-truncate">
+              <span class="admin-name text-captialize text-truncate">{{
+                profileDetail.name.first + ' ' + profileDetail.name.last
+                }}</span>
+              @if (profileDetail?.email) {
+              <p class="admin-email mb-1">
+                {{ profileDetail.email }}
+              </p>
+              } @if(profileDetail?.role?.title){
+              <p class="profile-role mb-1">
+                {{ profileDetail.role.title }}
+              </p>
+              }
+
+              <p class="profile-last-login mb-0">
+                Last login:
+                <app-date [date]="profileDetail.lastLogin" [showTime]="true"></app-date>
+              </p>
+            </div>
+          </div>
+          <div class="actions">
+            <div (click)="onMenuAction('profile')"
+              class="action-tab cursor-pointer p-3 d-flex align-items-center justify-content-between">
+              <div class="left d-flex align-items-center">
+                <div class="action-image-icon d-flex align-items-center mr-3">
+                  <img [src]="PROFILE_ICON" alt="profile icon" />
+                </div>
+                <span>View Profile</span>
+              </div>
+              <div class="right">
+                <div class="action-image-icon d-flex align-items-center">
+                  <img [src]="RIGHT_ARROW_ICON" alt="profile icon" />
+                </div>
+              </div>
+            </div>
+            <div (click)="onMenuAction('password')"
+              class="action-tab cursor-pointer p-3 d-flex align-items-center justify-content-between">
+              <div class="left d-flex align-items-center">
+                <div class="action-image-icon d-flex align-items-center mr-3">
+                  <img [src]="CHANGE_PASSWORD_ICON" alt="change-password icon" />
+                </div>
+                <span>Change Password</span>
+              </div>
+              <div class="right">
+                <div class="action-image-icon d-flex align-items-center">
+                  <img [src]="RIGHT_ARROW_ICON" alt="profile icon" />
+                </div>
+              </div>
+            </div>
+            <div (click)="onLogout()"
+              class="action-tab cursor-pointer p-3 d-flex align-items-center justify-content-between">
+              <div class="left d-flex align-items-center">
+                <div class="action-image-icon d-flex align-items-center mr-3">
+                  <img [src]="LOGOUT_ICON" alt="logout-icon" />
+                </div>
+                <span>Logout</span>
+              </div>
+              <div class="right">
+                <div class="action-image-icon d-flex align-items-center">
+                  <img [src]="RIGHT_ARROW_ICON" alt="profile icon" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-menu>
+  </ng-container>
+  }
+</mat-toolbar>
+
+
+
+
+
+
+
+
+
+
+
+<!-- <button
+    mat-icon-button
+    class="example-icon"
+    aria-label="Example icon-button with menu icon"
+    (click)="navigationPanel()"
+  >
+    <mat-icon>menu</mat-icon>
+  </button> -->
+<!-- <img [src]="icons.LOGO" alt="Admin Accelerator logo" class="logo" srcset="" />
+  <span class="example-spacer"></span> -->
+<!-- <button
+    mat-icon-button
+    class="example-icon favorite-icon"
+    aria-label="Example icon-button with help icon"
+  >
+    <mat-icon>help</mat-icon>
+  </button>
+  <button
+    mat-icon-button
+    class="example-icon"
+    aria-label="Example icon-button with notifications icon"
+  >
+    <mat-icon>notifications</mat-icon>
+  </button> -->

@@ -1,0 +1,46 @@
+@import '../../../../scss/mix';
+@import '../../../../scss/var';
+
+.modal-box {
+  // max-width: 500px;
+  min-width: 450px;
+  text-align: center;
+  .moda-img {
+    width: 100px;
+    height: 100px;
+    margin: auto;
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+  .modal-header {
+    h2 {
+      font-size: 22px;
+      color: #000000;
+    }
+  }
+  .modal-content {
+    padding: 0px 30px;
+    .message {
+      font-size: 15px;
+      line-height: 23px;
+    }
+  }
+}
+::ng-deep {
+  .mat-dialog-container {
+    border-radius: 20px !important;
+  }
+}
+
+.modal_message {
+  max-width: 400px;
+  margin: 0 auto;
+  text-align: center;
+  font-weight: 500;
+}
+
+.custom-mat-dialog-content {
+  padding-bottom: 0px;
+}

@@ -1,0 +1,46 @@
+<div class="modal-box">
+  <div class="d-flex justify-content-between align-items-baseline p-2">
+    <div class="w-15 show-text">Crop Image</div>
+    @if(controlName === 'Thumbnail'){
+    <app-common-select
+      class="w-30"
+      [dataList]="aspectRatios"
+      (valueChange)="setValue($event, 'ratio')"
+      [form]="form"
+      [controlName]="'ratio'"
+      [errorText]="'ratio'"
+      [isSearchable]="false"
+      [placeholderLabel]="'Select Aspect Ratio'"
+      [isMultipleSelect]="false"
+    ></app-common-select>
+    }
+  </div>
+
+  <div  class="modal-img">
+    <image-cropper
+      [imageURL]="data?.base64"
+      [maintainAspectRatio]="true"
+      [aspectRatio]="data.aspectRatio"
+      alignImage="center"
+      (imageCropped)="imageCropped($event)"
+      (imageLoaded)="imageLoaded()"
+      [roundCropper]="roundCropper"
+    ></image-cropper>
+    @if(!isImageLoaded){
+    <div class="loading">Loading...</div>
+    }
+  </div>
+  <div class="modal-footer">
+    <button mat-stroked-button class="modal-btn" (click)="onCancel()">
+      Cancel
+    </button>
+    <button
+      mat-flat-button
+      color="primary"
+      class="butn butn__new modal-btn"
+      (click)="onSubmit()"
+    >
+      Save
+    </button>
+  </div>
+</div>

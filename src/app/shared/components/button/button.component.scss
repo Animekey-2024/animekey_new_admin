@@ -1,0 +1,56 @@
+@import './../../../../scss/var';
+
+@mixin btn-style {
+  height: 70px;
+  width: 300px;
+  border-radius: 7px;
+  font-weight: 700;
+  font-size: 20px;
+  cursor: pointer;
+  font-family: $font;
+}
+
+.mt-20 {
+  margin-top: 20px;
+}
+
+.btn-light {
+  background: $white !important;
+  color: $black !important;
+  border: 1px $light-grey solid !important;
+}
+
+.btn-stroke {
+  background: none !important;
+  color: $btn-stroke-color !important;
+  border: none !important;
+}
+.btn-white {
+  background: $white !important;
+  color: $black !important;
+  border: 1px $light-grey solid !important;
+}
+
+.btn-flat {
+  font-size: 22px;
+  font-weight: bold;
+  color: $primary;
+  font-family: $font !important;
+  background: none;
+  border: none;
+  height: 20px;
+}
+
+// .cms-submit-btn {
+//   @include btn-style();
+//   background: $primary;
+//   color: $white;
+//   border: none;
+// }
+
+// .cms-cancel-btn {
+//   @include btn-style();
+//   background: none;
+//   border: 1px solid $primary;
+//   color: $primary;
+// }

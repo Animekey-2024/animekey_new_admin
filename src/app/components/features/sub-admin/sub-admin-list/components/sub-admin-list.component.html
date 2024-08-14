@@ -1,0 +1,61 @@
+<div class="grid-container">
+  <div class="d-flex justify-content-between align-items-center">
+    <app-breadcrumb></app-breadcrumb>
+    <div class="global-buttons d-flex gap-3">
+      <app-date-filter (globalDateEvent)="onDateChange($event)"></app-date-filter>
+      <app-button *showIf="features.SUB_ADMINS; role: permissions.ADD" (click)="onAdd()"
+        [label]="btnSlug.CREATE"></app-button>
+    </div>
+  </div>
+  <!-- <app-data-card [dataCardInput]="dataCardInput"></app-data-card> -->
+  <div class="table-wrapper">
+    <app-sub-admin-filter (changeFilter)="filterData($event)"
+      (searchFilterChange)="searchData($event)"></app-sub-admin-filter>
+
+    <!-- Table -->
+    <app-table [dataSource]="dataSource" [tableColumns]="columns" [customTemplates]="{ id: id }"
+      [customMenu]="customMenuTemplate" (sort)="onSortChange($event)"></app-table>
+    <!-- Table Pagination -->
+    @if(dataSource.data.length){
+    <app-pagination (page)="onPaginationChange($event)" [dataSource]="dataSource" [pageSize]="pagination.size"
+      [totalRecords]="pagination.totalRecords"
+      [pageIndex]="pagination.page === 0 ? 1 : pagination.page - 1"></app-pagination>
+    }
+  </div>
+
+  <!-- Template for Sub Admin ID -->
+  <ng-template let-row="row" #id>
+    <span class="text-center custom-id-column" (click)="redirectToDetailPage(row)">{{ row.id }}</span>
+  </ng-template>
+
+  <!-- Template for table action -->
+  <ng-template #customMenuTemplate let-row="data">
+    <span [matTooltip]="permissionMessages" [matTooltipDisabled]="subAdminActionPermission">
+      <button mat-icon-button [disabled]="!subAdminActionPermission" type="button" [matMenuTriggerFor]="defaultMenu"
+        [matMenuTriggerData]="{ data: row }">
+        <mat-icon>more_horiz</mat-icon>
+      </button>
+    </span>
+    <mat-menu #defaultMenu="matMenu" xPosition="before" backdropClass="sg-vertical-sub-menu" class="table-dropdown">
+      <ng-template matMenuContent let-menuItem="data">
+        <div class="action-menu">
+          <!-- <mat-divider></mat-divider> -->
+          <ng-container>
+            <button *showIf="features.SUB_ADMINS; role: permissions.EDIT" mat-menu-item type="button"
+              (click)="onSubAdminEdit(menuItem?._id)">
+              {{ 'Edit' }}
+            </button>
+            <mat-divider></mat-divider>
+            <ng-container *showIf="features.SUB_ADMINS; role: permissions.STATUS">
+              @if(menuItem?._id != loggedInUserId){
+              <button mat-menu-item type="button" (click)="changeAction(menuItem)">
+                {{ !!menuItem?.isActive ? 'Deactivate' : 'Activate' }}
+              </button>
+              }
+            </ng-container>
+          </ng-container>
+        </div>
+      </ng-template>
+    </mat-menu>
+  </ng-template>
+</div>

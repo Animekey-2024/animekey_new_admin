@@ -1,0 +1,76 @@
+/* You can add global styles to this file, and also import other style files */
+
+/* You can add global styles to this file, and also import other style files */
+// @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+// @import 'https://fonts.googleapis.com/icon?family=Material+Icons';
+@import '../src/scss/common';
+@import '../src/scss/grid';
+@import '../src/scss/reset';
+@import '../src/scss/typography';
+@import '../src/scss/material-style.scss';
+@import '../src/scss/utility';
+@import '../src/scss/var';
+
+html,
+body {
+  height: 100%;
+}
+
+html {
+  scroll-behavior: smooth !important;
+}
+
+body {
+  margin: 0;
+  font-family: $font, 'Helvetica Neue', sans-serif;
+  font-weight: 400;
+  line-height: 1.5;
+  color: $text-color;
+  text-align: left;
+  background-color: $background;
+  font-size: 16px;
+  // --mat-sidenav-container-background-color: linear-gradient(to bottom, rgba(25, 67, 0, 1), rgba(0, 0, 0, 1));
+  --mdc-filled-button-container-color: #5C9119;
+  --mdc-text-button-label-text-color: #5C9119;
+  --mdc-outlined-text-field-caret-color: #76B627;
+  --mdc-outlined-text-field-focus-outline-color: #76B627;
+  --mdc-outlined-button-label-text-color: #76B627;
+  --mat-text-button-state-layer-color: #76B627;
+  --mdc-outlined-button-outline-color: #1d3300;
+  --mdc-filled-button-container-shape: 5px;
+  --mdc-outlined-button-container-shape: 5px;
+
+  .mat-accent.mat-mdc-checkbox {
+    --mdc-checkbox-selected-checkmark-color: #ffffff;
+    --mdc-checkbox-selected-focus-icon-color: #76B627;
+    --mdc-checkbox-selected-hover-icon-color: #1d3300;
+    --mdc-checkbox-selected-icon-color: #76B627;
+    --mdc-checkbox-selected-focus-state-layer-color: #76B627;
+    --mdc-checkbox-selected-hover-state-layer-color: #76B627;
+    --mdc-checkbox-unselected-pressed-state-layer-color: #76B627;
+    --mat-checkbox-disabled-label-color: #1d3300;
+    --mat-checkbox-label-text-color: #1d3300;
+  }
+
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.grid-container {
+  margin: 20px;
+}
+
+.main-label {
+  font-size: 16px;
+  color: #1d3300;
+  font-weight: 600;
+  line-height: 25.78px;
+}

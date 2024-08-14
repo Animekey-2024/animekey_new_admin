@@ -1,0 +1,32 @@
+.progtess-tracker {
+  mat-expansion-panel {
+    background-color: #fafafa;
+  }
+
+  mat-expansion-panel {
+    width: 450px;
+  }
+
+  .upload-progress {
+    position: relative;
+    .progress-label {
+      position: absolute;
+      font-size: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: auto;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+  mat-card {
+    box-shadow: var(--mdc-elevated-card-container-elevation) !important;
+    border-radius: 4px !important;
+    .progress-container {
+      max-height: 40vh;
+      overflow: auto;
+    }
+  }
+}

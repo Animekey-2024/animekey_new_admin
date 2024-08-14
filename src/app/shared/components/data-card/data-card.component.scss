@@ -1,0 +1,62 @@
+@import './../../../../scss/var';
+@import './../../../../scss/mix';
+
+.data-card {
+  mat-card {
+    background: $white;
+    flex-flow: wrap;
+    color: $value-color;
+    .image-container {
+      display: inline-flex;
+      .image {
+        width: 52px;
+        height: 52px;
+      }
+    }
+
+    .card-title {
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .card-value {
+      font-size: 32px;
+      font-weight: 700;
+      line-height: 21px;
+    }
+
+    .card-status {
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 19.6px;
+      margin-top: 8px;
+    }
+  }
+}
+
+.hr-grey {
+  border: 1px solid #eee;
+  min-height: 85px;
+  margin: 0;
+}
+.hr-grey:last-child {
+  display: none;
+}
+
+.image-graph-container {
+  width: 10px;
+  height: 10px;
+  .image {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.graph-value,
+.graph-text {
+  font-size: 12px;
+}
+
+.success {
+  color: $green;
+}

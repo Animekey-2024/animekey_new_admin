@@ -1,0 +1,13 @@
+@import './../../../../scss/var';
+@import './../../../../scss/mix';
+
+.d-flex {
+  @include flex('', space-between);
+}
+
+.heading-panel {
+  color: $primary;
+  border-left: 4px solid;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+}

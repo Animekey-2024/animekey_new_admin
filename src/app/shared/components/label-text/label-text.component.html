@@ -1,0 +1,6 @@
+<label class="label-text mb-2 mt-4" [style.opacity]="disabled ? 0.3 : 1">
+  {{ labelText }}
+  @if(tooltipText){
+  <app-info-with-tooltip [tooltipText]="tooltipText"></app-info-with-tooltip>
+  }
+</label>

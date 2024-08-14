@@ -1,0 +1,41 @@
+<div
+  [ngClass]="{
+    'add-media-container': !videoUrl,
+    'media-container': videoUrl
+  }"
+>
+  <div class="image-container">
+    @if(videoUrl){
+    <div class="text-center m-2">
+      <!-- <button mat-icon-button type="button" (click)="openFileSelection()">
+        <mat-icon>edit_circle</mat-icon>
+      </button> -->
+
+      <video width="450" height="250" controls [src]="videoUrl">
+        <source type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+      <div class="ml-2 mt-2 d-flex align-items-center justify-content-between">
+        <p class="mb-0">{{ fileName }}</p>
+        <button mat-icon-button type="button" (click)="removeSelectedFile()">
+          <mat-icon class="remove-image" title="Delete"
+            >delete_forever</mat-icon
+          >
+        </button>
+      </div>
+    </div>
+    } @else {
+    <button mat-icon-button type="button" (click)="openFileSelection()">
+      <mat-icon>add_circle</mat-icon>
+    </button>
+    <p>Add File</p>
+    <input
+      #file
+      type="file"
+      hidden
+      [accept]="allowFileType"
+      (change)="handleVideoFileChange($event)"
+    />
+    }
+  </div>
+</div>

@@ -1,0 +1,66 @@
+<div class="card-container">
+  <mat-card class="authenticator-card">
+    <mat-card-content>
+      <div class="auth-header mb-4">
+        <!-- <img [src]="lockIcon" class="auth-lock-icon mb-5" alt="" srcset="" /> -->
+        <p class="auth-heading mb-0">Google App Authentication</p>
+        <p class="auth-sub-heading mt-3">
+          Secure your account with TOTP two-factor authentication
+        </p>
+      </div>
+      <!-- <div class="auth-image-logo">
+        <span>Setup</span>
+        <img [src]="authenticatorLogo" alt="QR Code" />
+        <span>Google Authenticator</span>
+      </div> -->
+      <p class="mb-4">Enter the verfication code*</p>
+      <form [formGroup]="verifyCodeForm">
+        <!-- <app-label-text
+          [labelText]="'Enter Verification Code*'"
+        ></app-label-text> -->
+        <mat-form-field appearance="outline" class="w-100 mouse-pointer px-5">
+          <!-- <mat-label>Enter Verification Code</mat-label> -->
+          <input
+            matInput
+            [type]="hide ? 'text' : 'password'"
+            maxlength="6"
+            formControlName="otp"
+            placeholder="Enter Verification Code"
+          />
+
+          @if(eyeIcon){
+          <button
+            class="eye-icon"
+            mat-icon-button
+            matSuffix
+            (click)="hide = !hide"
+            [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide"
+            type="button"
+          >
+            <mat-icon>{{ hide ? 'visibility' : 'visibility_off' }}</mat-icon>
+          </button>
+          }
+          <mat-error>{{
+            verifyCodeForm | inputError : 'otp' : 'Verification Code' : true
+          }}</mat-error>
+        </mat-form-field>
+        <div class="auth-actions px-5 gap-3 mt-3">
+          <button
+            mat-flat-button
+            color="primary"
+            type="submit"
+            (click)="onVerify()"
+            [disabled]="verifyCodeForm.invalid"
+          >
+            Verify
+          </button>
+          <button mat-button type="button" (click)="backToSetup()">
+            <mat-icon>arrow_back</mat-icon>
+            <span>Back</span>
+          </button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

@@ -1,0 +1,122 @@
+@import '../../../../../scss/mix';
+@import '../../../../../scss/var';
+
+.main-header {
+  @include page-header;
+}
+
+.add-flow {
+  @include flex(stretch, space-between);
+
+  @media (max-width: 767px) {
+    flex-wrap: wrap;
+  }
+
+  .permission-card {
+    flex: 0 0 60%;
+
+    .input-feild {
+      flex: 1;
+    }
+
+    @media (min-width: 768px) and (max-width: 1024px) {
+      max-width: 49%;
+    }
+
+    @media (max-width: 767px) {
+      flex: 0 0 100%;
+      width: 100%;
+    }
+  }
+}
+
+.main-label {
+  font-size: 16px;
+  color: $primary;
+  font-weight: 600;
+  line-height: 25.78px;
+}
+
+:host ::ng-deep {
+  .sub-detail {
+    .checkbox-wrapper .mat-checkbox-label {
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .mat-checkbox-background,
+    .mat-checkbox-frame {
+      border-radius: 4px;
+    }
+  }
+}
+
+::ng-deep {
+  .permission-id {
+    .cst-tooltip {
+      right: 0px !important;
+    }
+
+    .message {
+      left: 50% !important;
+      transform: translate(-50%, 0px) !important;
+
+      &::before {
+        left: 50% !important;
+        transform: translate(-50%, 0px) !important;
+      }
+
+      span {
+        font-size: 10px;
+        color: white;
+        display: block;
+        line-height: 21px;
+      }
+    }
+  }
+}
+
+::ng-deep {
+  .role-text {
+    .mat-form-field-outline {
+      height: 110px !important;
+    }
+
+    .role-textarea {
+      height: 78px !important;
+    }
+  }
+
+  .role-permision {
+    .role-head {
+      flex-wrap: wrap;
+      // font-weight: 600;
+      color: $primary;
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 24px;
+      letter-spacing: 0.30000001192092896px;
+
+      .wide-label {
+        flex: 0 0 38%;
+        padding-top: 10px;
+
+        @media (max-width: 1024px) {
+          flex: 0 0 100% !important;
+        }
+      }
+
+      .sub-detail {
+        min-width: 1px;
+
+        @media (max-width: 1024px) {
+          min-width: auto;
+        }
+
+        .mat-checkbox {
+          margin-right: 20px;
+        }
+      }
+    }
+  }
+}

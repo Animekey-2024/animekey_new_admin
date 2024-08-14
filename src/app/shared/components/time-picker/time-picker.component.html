@@ -1,0 +1,30 @@
+<div [formGroup]="form">
+  <mat-form-field
+    appearance="outline"
+    style="width: 10rem"
+    [ngClass]="!!isDisabled ? 'disabled-event' : ''"
+  >
+    <input
+      [ngxMatTimepicker]="picker"
+      matInput
+      [formControlName]="controlName"
+      [format]="12"
+      [placeholder]="placeholder"
+      readonly=""
+      (ngModelChange)="onValueChange($event)"
+      [(ngModel)]="value"
+      ngDefaultControl
+    />
+    <ngx-mat-timepicker #picker></ngx-mat-timepicker>
+    <button
+      mat-icon-button
+      (click)="openFromIcon(picker)"
+      matSuffix
+      class="hide-background cursor-pointer"
+      [ngClass]="!!isDisabled ? 'disabled-event' : ''"
+    >
+      <mat-icon>schedule</mat-icon>
+    </button>
+    <mat-error>{{ form | inputError : controlName : errorText }}</mat-error>
+  </mat-form-field>
+</div>

@@ -1,0 +1,15 @@
+@if(date){
+<ng-container>
+  @if(showTime){
+  <ng-container>
+    {{ date | date : 'MMM dd, y' }} | {{ date | date : 'hh:mm a' }}
+  </ng-container>
+  } @else{
+  <ng-template>
+    {{ date | date : 'MMM dd, y' }}
+  </ng-template>
+  }
+</ng-container>
+} @else{
+<ng-container>N/A</ng-container>
+}

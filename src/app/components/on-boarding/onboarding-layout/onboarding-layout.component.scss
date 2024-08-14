@@ -1,0 +1,39 @@
+@import '../../../../scss/var';
+
+.container {
+  height: 100vh; 
+  background: linear-gradient(to bottom, rgba(25, 67, 0, 1), rgba(0, 0, 0, 1));
+}
+
+.left-portion {
+  display: flex;
+  flex-direction: column;
+  color: $white;
+  height: 80vh;
+  // background-image: url('../../../../assets/images/onboarding/onboarding.svg');
+  background-size: cover;
+  background-position: center;
+  padding: 10rem 5rem 2rem 5rem;
+  // background: linear-gradient(to bottom, rgba(25, 67, 0, 1), rgba(0, 0, 0, 1));
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  h3 {
+    font-size: 4rem;
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    line-height: 1.2;
+    text-align: center;
+  }
+
+  p {
+    font-size: 1.4rem;
+    opacity: 0.8;
+    line-height: 1.2;
+  }
+
+  .animekey-logo {
+    height: 200px;
+  }
+}

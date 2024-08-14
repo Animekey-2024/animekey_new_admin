@@ -1,0 +1,60 @@
+<div class="filter">
+  <!-- filter search -->
+  <app-search
+    [label]="placeHolder"
+    (applySearchFilter)="searchFilter($event)"
+  ></app-search>
+
+  <!-- filter icon to open the filter -->
+  <div
+    class="cursor-pointer filter-icon position-relative"
+    [matMenuTriggerFor]="beforeMenu"
+  >
+    <img [src]="iconEnum.FILTER" />
+    @if(isFilterApplied){
+    <div class="applied-filter-dot"></div>
+    }
+  </div>
+
+  <!-- Filter options -->
+  <mat-menu #beforeMenu="matMenu" xPosition="before" class="filter-menu">
+    <div class="filter-model" (click)="$event.stopPropagation()">
+      <div class="d-flex justify-content-between mb-3">
+        <h4 class="align-self-center mb-0">Filter</h4>
+        <button mat-icon-button type="button" (click)="closeMenu()">
+          <mat-icon class="close-icon" color="dark">close</mat-icon>
+        </button>
+      </div>
+      <mat-divider></mat-divider>
+      <form class="my-3" [formGroup]="form">
+        <div class="status-section d-flex gap-3">
+          <div class="field">
+            <app-common-select
+              [label]="'Sub Admin Status'"
+              [dataList]="statusData"
+              (valueChange)="setValue($event, 'isActive')"
+              [form]="form"
+              [controlName]="'isActive'"
+            ></app-common-select>
+          </div>
+        </div>
+        <mat-divider></mat-divider>
+        <div class="d-flex gap-3 mt-3">
+          <app-button
+            [label]="btnSlug['RESET']"
+            [isStrokeBtn]="true"
+            (click)="filterReset()"
+            type="button"
+            [disabled]="!form.dirty"
+          ></app-button>
+          <app-button
+            [label]="btnSlug['SUBMIT']"
+            (click)="filterData()"
+            type="submit"
+            [disabled]="!form.dirty"
+          ></app-button>
+        </div>
+      </form>
+    </div>
+  </mat-menu>
+</div>

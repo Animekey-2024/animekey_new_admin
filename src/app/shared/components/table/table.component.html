@@ -1,0 +1,241 @@
+<table
+  mat-table
+  [dataSource]="dataSource"
+  matSort
+  (matSortChange)="sortChange($event)"
+>
+  <ng-container [matColumnDef]="column.key" *ngFor="let column of tableColumns">
+    <!-- S.No Template -->
+    @if(column.key === staticColumns.POSITION){
+    <ng-container>
+      <th mat-header-cell *matHeaderCellDef>{{ column?.name }}</th>
+      <td
+        mat-cell
+        *matCellDef="let row; let i = index"
+        (click)="$event.stopPropagation()"
+      >
+        {{ i + 1 }}
+      </td>
+    </ng-container>
+    }
+    <!-- Actions Template -->
+    @if(column.key === staticColumns.ACTION){
+    <ng-container>
+      <th mat-header-cell *matHeaderCellDef>{{ column?.name }}</th>
+      <td mat-cell *matCellDef="let row" (click)="$event.stopPropagation()">
+        <ng-container *ngTemplateOutlet="customMenu; context: { data: row }">
+        </ng-container>
+      </td>
+    </ng-container>
+    }
+    <!-- Status Template -->
+    @if(column.key === staticColumns.STATUS){
+    <ng-container>
+      <th mat-header-cell *matHeaderCellDef>{{ column?.name }}</th>
+      <td mat-cell *matCellDef="let row">
+        <app-status
+          [status]="row[column.dataKey]"
+          [isDanger]="!row[column.dataKey]"
+          [statusClass]="
+          row[column.dataKey] && column.dataKey
+            ? row[column.dataKey].toString()
+            : row[column.dataKey]
+        "
+        ></app-status>
+      </td>
+    </ng-container>
+    }
+    <!-- Custom Date Template -->
+    @if( column.key === staticColumns.CREATED_AT || column.key ===
+    staticColumns.UPDATED_AT || column.key === staticColumns.ACTIVITY_AT){
+    <ng-container>
+      @if(column.isSortable){
+      <ng-container>
+        <th mat-header-cell *matHeaderCellDef [mat-sort-header]="column.key">
+          {{ column?.name }}
+        </th>
+      </ng-container>
+      } @else{
+      <ng-container>
+        <th mat-header-cell *matHeaderCellDef>{{ column?.name }}</th>
+      </ng-container>
+      }
+      <td mat-cell *matCellDef="let row">
+        <ng-container
+          *ngTemplateOutlet="
+            customTemplates && customTemplates[column.key]
+              ? customTemplates[column.key]
+              : defaultDate;
+            context: { col: column, row: row }
+          "
+        >
+        </ng-container>
+        <ng-template let-col="col" let-row="row" #defaultDate>
+          <app-date [date]="row[column.dataKey]" [showTime]="true"></app-date>
+        </ng-template>
+      </td>
+    </ng-container>
+    }
+
+    <!-- Show Image Template -->
+    @if(column.showWithImage){
+    <ng-container>
+      <!-- Show Image Template with sort -->
+      @if(column.isSortable){
+      <ng-container>
+        <th mat-header-cell *matHeaderCellDef [mat-sort-header]="column.key">
+          {{ column?.name }}
+        </th>
+      </ng-container>
+      } @else{
+      <!-- Show Image Template without sort -->
+      <ng-container>
+        <th mat-header-cell *matHeaderCellDef>{{ column?.name }}</th>
+      </ng-container>
+      }
+      <td
+        class="user-name-td"
+        mat-cell
+        *matCellDef="let row"
+        (click)="view(row)"
+      >
+        <div class="user-name">
+          <div class="img">
+            <app-image-preview
+              [image]="row[column?.imageKey]"
+              [text]="row[column.dataKey]"
+            ></app-image-preview>
+          </div>
+          <span [attr.title]="row[column.dataKey]">{{
+            row[column.dataKey]
+          }}</span>
+        </div>
+      </td>
+    </ng-container>
+    }
+    <!-- if column has custom template with sort -->
+    @if(column.isSortable){
+    <ng-container>
+      <th mat-header-cell *matHeaderCellDef [mat-sort-header]="column.key">
+        {{ column?.name }}
+      </th>
+      <td
+        class=""
+        mat-cell
+        *matCellDef="let row"
+        (click)="view(row)"
+        title="{{ row[column.dataKey] }}"
+      >
+        <ng-container
+          *ngTemplateOutlet="
+            customTemplates && customTemplates[column.key]
+              ? customTemplates[column.key]
+              : defaultCol;
+            context: { col: column, row: row }
+          "
+        >
+        </ng-container>
+        <ng-template let-col="col" let-row="row" #defaultCol>
+          {{ row[col.dataKey] | optionalField }}
+        </ng-template>
+      </td>
+    </ng-container>
+    } @else{
+    <!-- if column has custom template without sort -->
+    <ng-container>
+      <th mat-header-cell *matHeaderCellDef>
+        {{ column?.name }}
+      </th>
+      <td
+        class=""
+        mat-cell
+        *matCellDef="let row"
+        (click)="view(row)"
+        title="{{ row[column.dataKey] }}"
+      >
+        <ng-container
+          *ngTemplateOutlet="
+            customTemplates && customTemplates[column.key]
+              ? customTemplates[column.key]
+              : defaultCol;
+            context: { col: column, row: row }
+          "
+        >
+        </ng-container>
+        <ng-template let-col="col" let-row="row" #defaultCol>
+          {{ row[column.dataKey] | optionalField }}
+        </ng-template>
+      </td>
+    </ng-container>
+    }
+
+    <th mat-header-cell *matHeaderCellDef>{{ column?.name }}</th>
+    <td class="" mat-cell *matCellDef="let row" (click)="view(row)">
+      {{ row[column.dataKey] }}
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr
+    mat-row
+    *matRowDef="let row; columns: displayedColumns"
+    (click)="viewFromRow(row)"
+    [ngClass]="{ 'disabled-row': row?.is_disabled, pointer: isCursor }"
+  ></tr>
+  <tr class="mat-row" *matNoDataRow>
+    <td class="mat-cell" colspan="12">
+      <app-no-data></app-no-data>
+    </td>
+  </tr>
+</table>
+
+<ng-template #defaultMenuTemplate let-row="data">
+  <button
+    mat-button
+    [matMenuTriggerFor]="defaultMenu"
+    [matMenuTriggerData]="{ data: row }"
+  >
+    <mat-icon>more_horiz</mat-icon>
+  </button>
+  <mat-menu
+    #defaultMenu="matMenu"
+    xPosition="before"
+    backdropClass="sg-vertical-sub-menu"
+    class="table-dropdown"
+  >
+    <ng-template matMenuContent let-aliasMenuItems="data">
+      <div class="action-menu">
+        <div class="triangle-up"></div>
+        <button
+          mat-menu-item
+          (click)="view(aliasMenuItems)"
+          *showIf="feature; role: permissions.VIEW"
+        >
+          View
+        </button>
+        <mat-divider></mat-divider>
+        <ng-container>
+          <button
+            mat-menu-item
+            (click)="edit(aliasMenuItems)"
+            *showIf="feature; role: permissions.EDIT"
+          >
+            Edit
+          </button>
+        </ng-container>
+        <mat-divider></mat-divider>
+        @if(loggedInUser.id !== aliasMenuItems.id){
+        <ng-container>
+          <button
+            mat-menu-item
+            (click)="changeAction(aliasMenuItems)"
+            *showIf="feature; role: permissions.STATUS"
+          >
+            {{ aliasMenuItems.is_active ? 'Deactivate' : 'Activate' }}
+          </button>
+        </ng-container>
+        }
+      </div>
+    </ng-template>
+  </mat-menu>
+</ng-template>

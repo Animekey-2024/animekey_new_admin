@@ -1,0 +1,13 @@
+// Do not edit, use values provided by backend
+export enum FEATURE_SLUGS {
+  ANALYTICS = 'ANALYTICS',
+  ROLES = 'ROLES',
+  NOTIFICATIONS = 'NOTIFICATION',
+  USERS = 'USERS',
+  SUBADMINS= 'SUBADMINS',
+  PAGES = 'PAGES',
+  SETTINGS='SETTINGS',
+  HOME ='HOME',
+  CONTENTS = 'CONTENTS',
+  SUB_ADMINS = 'SUBADMINS'
+}
